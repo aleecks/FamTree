@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "93256295037",
+    "project_id": "famtree-tfg",
+    "storage_bucket": "famtree-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93256295037:android:705d47550d2fe562488714",
+        "android_client_info": {
+          "package_name": "com.imf.famtree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93256295037-p2aqohbj4g5f8b904u9s2i74jdejbeqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCthxt8djfz_1bGy2QBFUR-nNNseln6Vn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93256295037-p2aqohbj4g5f8b904u9s2i74jdejbeqb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
