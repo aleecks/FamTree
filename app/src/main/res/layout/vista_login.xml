@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Registro">
+    tools:context=".Login">
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="120dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="30dp"
         android:text="Volver" />
 
@@ -29,39 +29,31 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <EditText
-        android:id="@+id/editTxtPass1"
+        android:id="@+id/editTxtContraseña"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="70dp"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
-    <EditText
-        android:id="@+id/editTxtPass2"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="45dp"
-        android:ems="10"
-        android:hint="Repite la Contraseña"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <Button
-        android:id="@+id/btnRegistro"
+        android:id="@+id/btnLogin"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
-        android:text="Registrarse" />
+        android:text="Iniciar Sesión" />
 
 </LinearLayout>
