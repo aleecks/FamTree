@@ -7,6 +7,20 @@ import java.util.regex.Pattern;
 
 public class Validaciones {
 
+    public static boolean validarNombre(String nombre) {
+        boolean comprobador = true;
+
+        try {
+            if (nombre.isEmpty() || nombre.length() < 3 || nombre.length() > 20) {
+                comprobador = false;
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        } finally {
+            return comprobador;
+        }
+    }
+
     public static boolean validarCorreo(String email) {
         boolean comprobador = true;
 
@@ -32,7 +46,7 @@ public class Validaciones {
             c2 = contrasena2.getText().toString();
 
             // comprobamos si estan vacios
-            if (c1.isEmpty() || c2.isEmpty()) {
+            if (c1.length() < 6 || c2.length() < 6 ) {
                 comprobador = false;
 
                 // comprobamos si coinciden

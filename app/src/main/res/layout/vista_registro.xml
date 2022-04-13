@@ -18,18 +18,29 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="280dp"
-        android:layout_height="158dp"
+        android:layout_width="237dp"
+        android:layout_height="155dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <EditText
+        android:id="@+id/editTxtNombre"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editTxtEmail"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -40,7 +51,7 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
@@ -50,7 +61,7 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Repite la Contraseña"
         android:inputType="textPassword"
@@ -61,7 +72,7 @@
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:text="Registrarse" />
 
 </LinearLayout>

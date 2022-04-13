@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                         } else {
                                             // If sign in fails, display a message to the user.
                                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                            Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "Usuario no encontrado", Toast.LENGTH_SHORT).show();
                                             updateUI(null);
                                         }
                                     }
@@ -102,8 +102,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             // User is signed in
             iEntrar.putExtra("email", txtEmail.getText().toString());
             startActivity(iEntrar);
-        } else {
-            // No user is signed in
         }
     }
 }

@@ -16,4 +16,30 @@
         android:layout_marginTop="30dp"
         android:text="Cerrar Sesión" />
 
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:textSize="20dp"
+        android:text="Nombre" />
+
+    <TextView
+        android:id="@+id/lblCorreo"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:textSize="20dp"
+        android:text="Correo" />
+
+    <TextView
+        android:id="@+id/lblUID"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:textSize="20dp"
+        android:text="Id" />
 </LinearLayout>

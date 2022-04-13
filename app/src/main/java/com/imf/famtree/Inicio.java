@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Inicio extends AppCompatActivity {
 
+    private LinearLayout vista;
     private Button btnLogin, btnRegistro;
     private Intent iLogin, iRegistro;
     private FirebaseAuth mAuth;
@@ -21,6 +23,7 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_inicio);
 
+        vista = findViewById(R.id.vistaInicio);
         btnRegistro = findViewById(R.id.btnRegistro);
         btnLogin = findViewById(R.id.btnLogin);
 
@@ -53,6 +56,7 @@ public class Inicio extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
+            vista.setVisibility(View.INVISIBLE);
             startActivity(new Intent(this, Home.class));
         } else {
             // No user is signed in
