@@ -10,13 +10,14 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.imf.famtree.inicio.Inicio;
 
 public class Home extends AppCompatActivity {
 
     private TextView lblNombre, lblCorreo, lblId;
-    private Button btnLogOut;
+    private Button btnLogOut, btnCrearArbol;
 
-    private Intent iInicio;
+    private Intent iInicio, iArbol;
     private FirebaseUser user;
 
     @Override
@@ -25,6 +26,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.vista_home);
 
         btnLogOut = findViewById(R.id.btnLogOut);
+        btnCrearArbol = findViewById(R.id.btnArbol1);
         lblNombre = findViewById(R.id.lblNombre);
         lblCorreo = findViewById(R.id.lblCorreo);
         lblId = findViewById(R.id.lblUID);
@@ -32,6 +34,7 @@ public class Home extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         iInicio = new Intent(this, Inicio.class);
+        iArbol = new Intent(this, CrearMiembro.class);
 
         // -------------- LISTENERS --------
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +44,14 @@ public class Home extends AppCompatActivity {
                 startActivity(iInicio);
             }
         });
+
+        btnCrearArbol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(iArbol);
+            }
+        });
+
     }
 
     @Override

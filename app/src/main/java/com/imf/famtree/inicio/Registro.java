@@ -1,4 +1,4 @@
-package com.imf.famtree;
+package com.imf.famtree.inicio;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,6 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.imf.famtree.Home;
+import com.imf.famtree.R;
+import com.imf.famtree.Validaciones;
 
 public class Registro extends AppCompatActivity implements View.OnClickListener {
 

@@ -16,6 +16,63 @@
         android:layout_marginTop="30dp"
         android:text="Cerrar Sesión" />
 
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnArbol1"
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Árbol" />
+
+        <Button
+            android:id="@+id/btnOpciones1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..." />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnArbol2"
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Árbol" />
+
+        <Button
+            android:id="@+id/btnOpciones2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..." />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnArbol3"
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:text="Nuevo Árbol" />
+
+        <Button
+            android:id="@+id/btnOpciones3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="..." />
+    </androidx.gridlayout.widget.GridLayout>
+
     <TextView
         android:id="@+id/lblNombre"
         android:layout_width="203dp"
@@ -30,7 +87,7 @@
         android:layout_width="203dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="30dp"
         android:textSize="20dp"
         android:text="Correo" />
 
@@ -39,7 +96,7 @@
         android:layout_width="203dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="90dp"
-        android:textSize="20dp"
-        android:text="Id" />
+        android:layout_marginTop="30dp"
+        android:text="Id"
+        android:textSize="20dp" />
 </LinearLayout>

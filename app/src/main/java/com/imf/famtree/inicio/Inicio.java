@@ -1,4 +1,4 @@
-package com.imf.famtree;
+package com.imf.famtree.inicio;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.imf.famtree.Home;
+import com.imf.famtree.R;
+import com.imf.famtree.inicio.Login;
+import com.imf.famtree.inicio.Registro;
 
 public class Inicio extends AppCompatActivity {
 
