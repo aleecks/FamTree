@@ -55,7 +55,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Nombre" />
+                android:hint="Nombre"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtApellido1.1"
@@ -65,7 +66,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint=" Primer Apellido" />
+                android:hint=" Primer Apellido"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtApellido1.2"
@@ -75,7 +77,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Segundo Apellido" />
+                android:hint="Segundo Apellido"
+                android:autofillHints="" />
 
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="wrap_content"
@@ -114,7 +117,7 @@
                     android:id="@+id/btnDefuncion1"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:background="@android:drawable/ic_menu_my_calendar"
                     tools:ignore="SpeakableTextPresentCheck" />
 
@@ -146,7 +149,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Nombre" />
+                android:hint="Nombre"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtApellido2.1"
@@ -156,7 +160,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint=" Primer Apellido" />
+                android:hint=" Primer Apellido"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtApellido2.2"
@@ -166,7 +171,8 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Segundo Apellido" />
+                android:hint="Segundo Apellido"
+                android:autofillHints="" />
 
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="wrap_content"
@@ -193,7 +199,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -205,7 +212,7 @@
                     android:id="@+id/btnDefuncion2"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:background="@android:drawable/ic_menu_my_calendar"
                     tools:ignore="SpeakableTextPresentCheck" />
 

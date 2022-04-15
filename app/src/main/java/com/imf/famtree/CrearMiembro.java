@@ -1,14 +1,11 @@
 package com.imf.famtree;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +17,6 @@ import com.imf.famtree.beans.Miembro;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
 
 public class CrearMiembro extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,7 +32,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
 
     private EditText txtNombre1, txtNombre2, txtApellido11, txtApellido12, txtApellido21, txtApellido22;
     private ArrayList<EditText> editTexts;
-    private TextView lblTitulo, lblMiembro1, lblMiembro2;
+    private TextView lblTitulo;
     private Button btnFechaN1, btnFechaN2, btnFechaD1, btnFechaD2, btnSiguiente, btnImg1, btnImg2;
 
     @Override
@@ -53,8 +47,6 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         txtApellido21 = findViewById(R.id.txtApellido2_1);
         txtApellido22 = findViewById(R.id.txtApellido2_2);
         lblTitulo = findViewById(R.id.lblTitulo);
-        lblMiembro1 = findViewById(R.id.lblMiembro1);
-        lblMiembro2 = findViewById(R.id.lblMiembro2);
         btnFechaN1 = findViewById(R.id.btnNacimiento1);
         btnFechaN2 = findViewById(R.id.btnNacimiento2);
         btnFechaD1 = findViewById(R.id.btnDefuncion1);
@@ -63,6 +55,10 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         btnImg1 = findViewById(R.id.btnImg1);
         btnImg2 = findViewById(R.id.btnImg2);
 
+        // --------- MOSTRAMOS TITULO --------
+        lblTitulo.setText("1º Pareja de Bisabuelos");
+
+        //------- INICIAMO VARIABLES --------
         user = FirebaseAuth.getInstance().getCurrentUser();
         bisabuelos = new ArrayList<>();
         abuelos = new ArrayList<>();
@@ -70,23 +66,11 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         arbol = new Arbol();
         contador = 0;
 
-        // mostramos titulo
-        lblTitulo.setText("1º Pareja de Bisabuelos");
-
         // ----------- CALENDARIO --------
         c = Calendar.getInstance();
         dia = c.get(Calendar.DAY_OF_MONTH);
         mes = c.get(Calendar.MONTH);
         ano = c.get(Calendar.YEAR);
-
-        // ----------- LISTENERS --------
-        btnSiguiente.setOnClickListener(this);
-        btnFechaN1.setOnClickListener(this);
-        btnFechaN2.setOnClickListener(this);
-        btnFechaD1.setOnClickListener(this);
-        btnFechaD2.setOnClickListener(this);
-        btnImg1.setOnClickListener(this);
-        btnImg2.setOnClickListener(this);
 
         // ----- RELLENAR ARRAYLIST -------
         editTexts = new ArrayList<>();
@@ -96,6 +80,15 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         editTexts.add(txtApellido12);
         editTexts.add(txtApellido21);
         editTexts.add(txtApellido22);
+
+        // ----------- LISTENERS --------
+        btnSiguiente.setOnClickListener(this);
+        btnFechaN1.setOnClickListener(this);
+        btnFechaN2.setOnClickListener(this);
+        btnFechaD1.setOnClickListener(this);
+        btnFechaD2.setOnClickListener(this);
+        btnImg1.setOnClickListener(this);
+        btnImg2.setOnClickListener(this);
     }
 
     @Override
@@ -164,9 +157,6 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         // reiniciar vista
                         onRestart();
 
-                        // mostrar info
-                        Toast.makeText(getApplicationContext(), miembro1.toString(), Toast.LENGTH_LONG).show();
-
                     } else if (contador < 5) {
                         // ------ ABUELOS -----
                         // crear objetos
@@ -218,46 +208,22 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnNacimiento1:
-                datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        fechaN1 = day + "/" + (month + 1) + "/" + year;
-                    }
-                }, dia, mes, ano);
-
+                datePicker = new DatePickerDialog(this, (view1, year, month, day) -> fechaN1 = day + "/" + (month + 1) + "/" + year, dia, mes, ano);
                 datePicker.show();
                 break;
 
             case R.id.btnNacimiento2:
-                datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        fechaN2 = day + "/" + (month + 1) + "/" + year;
-                    }
-                }, dia, mes, ano);
-
+                datePicker = new DatePickerDialog(this, (view12, year, month, day) -> fechaN2 = day + "/" + (month + 1) + "/" + year, dia, mes, ano);
                 datePicker.show();
                 break;
 
             case R.id.btnDefuncion1:
-                datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        fechaD1 = day + "/" + (month + 1) + "/" + year;
-                    }
-                }, dia, mes, ano);
-
+                datePicker = new DatePickerDialog(this, (view13, year, month, day) -> fechaD1 = day + "/" + (month + 1) + "/" + year, dia, mes, ano);
                 datePicker.show();
                 break;
 
             case R.id.btnDefuncion2:
-                datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        fechaD2 = day + "/" + (month + 1) + "/" + year;
-                    }
-                }, dia, mes, ano);
-
+                datePicker = new DatePickerDialog(this, (view14, year, month, day) -> fechaD2 = day + "/" + (month + 1) + "/" + year, dia, mes, ano);
                 datePicker.show();
 
         }

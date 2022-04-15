@@ -2,11 +2,9 @@ package com.imf.famtree.inicio;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,13 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.imf.famtree.Home;
+import com.imf.famtree.ManejadorBD;
 import com.imf.famtree.R;
 import com.imf.famtree.Validaciones;
 
@@ -32,6 +28,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     private Intent iEntrar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private ManejadorBD bd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         btnVolver = findViewById(R.id.btnVolver);
 
         mAuth = FirebaseAuth.getInstance();
+        bd = new ManejadorBD();
 
         // ---------------- INTENTS ----------------
         iEntrar = new Intent(this, Home.class);
@@ -53,12 +52,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         // ---------------- LISTENERS ----------------
         btnRegistro.setOnClickListener(this);
 
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        btnVolver.setOnClickListener(view -> onBackPressed());
     }
 
     @Override
@@ -79,21 +73,18 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 } else {
                     // creamos usuario
                     mAuth.createUserWithEmailAndPassword(txtEmail.getText().toString(), txtPass1.getText().toString())
-                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Log.d(TAG, "createUserWithEmail:success");
-                                        user = mAuth.getCurrentUser();
-                                        updateUI(user);
+                            .addOnCompleteListener(this, task -> {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success");
+                                    user = mAuth.getCurrentUser();
+                                    updateUI(user);
 
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                        updateUI(null);
-                                    }
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(getApplicationContext(), "Error autentificación", Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
                                 }
                             });
                 }
@@ -116,24 +107,24 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                         .build();
 
                 user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Nombre añadido");
-                                } else {
-                                    Log.w(TAG, "addDisplayName:failure", task.getException());
-                                    Toast.makeText(getApplicationContext(), "El nombre no se pudo añadir", Toast.LENGTH_SHORT).show();
-                                }
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Nombre añadido");
+                            } else {
+                                Log.w(TAG, "addDisplayName:failure", task.getException());
+                                Toast.makeText(getApplicationContext(), "El nombre no se pudo añadir", Toast.LENGTH_SHORT).show();
                             }
                         });
+                // metemos usuario en la bd
+                bd.crearUsuario(user.getUid(), txtNombre.getText().toString(), txtEmail.getText().toString());
 
                 // entramos en la app
-                iEntrar.putExtra("email", txtEmail.getText().toString());
                 startActivity(iEntrar);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 }

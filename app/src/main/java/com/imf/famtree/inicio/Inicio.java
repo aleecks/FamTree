@@ -12,15 +12,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.imf.famtree.Home;
 import com.imf.famtree.R;
-import com.imf.famtree.inicio.Login;
-import com.imf.famtree.inicio.Registro;
 
 public class Inicio extends AppCompatActivity {
 
     private LinearLayout vista;
     private Button btnLogin, btnRegistro;
     private Intent iLogin, iRegistro;
-    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +29,14 @@ public class Inicio extends AppCompatActivity {
         btnRegistro = findViewById(R.id.btnRegistro);
         btnLogin = findViewById(R.id.btnLogin);
 
-        mAuth = FirebaseAuth.getInstance();
-
         // ---------------- INTENTS ----------------
         iLogin = new Intent(this, Login.class);
         iRegistro = new Intent(this, Registro.class);
 
         // ---------------- LISTENERS ----------------
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(iLogin);
-            }
-        });
+        btnLogin.setOnClickListener(view -> startActivity(iLogin));
 
-        btnRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(iRegistro);
-            }
-        });
+        btnRegistro.setOnClickListener(view -> startActivity(iRegistro));
     }
 
     @Override
@@ -62,8 +48,6 @@ public class Inicio extends AppCompatActivity {
             // User is signed in
             vista.setVisibility(View.INVISIBLE);
             startActivity(new Intent(this, Home.class));
-        } else {
-            // No user is signed in
         }
     }
 }

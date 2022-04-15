@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,12 +38,9 @@ public class Home extends AppCompatActivity {
         iArbol = new Intent(this, CrearMiembro.class);
 
         // -------------- LISTENERS --------
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(iInicio);
-            }
+        btnLogOut.setOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(iInicio);
         });
 
         btnCrearArbol.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +55,8 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         lblNombre.setText(user.getDisplayName());
         lblCorreo.setText(user.getEmail());
         lblId.setText(user.getUid());
-
     }
 }

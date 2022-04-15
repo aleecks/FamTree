@@ -1,7 +1,6 @@
 package com.imf.famtree.beans;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Arbol {
 
