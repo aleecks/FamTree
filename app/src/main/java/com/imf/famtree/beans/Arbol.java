@@ -14,12 +14,21 @@ public class Arbol {
     public Arbol() {
     }
 
-    public Arbol(String idUser, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres, ArrayList<Miembro> hijos) {
+    public Arbol(String idUser, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
         this.idUser = idUser;
         this.bisabuelos = bisabuelos;
         this.abuelos = abuelos;
         this.padres = padres;
-        this.hijos = hijos;
+    }
+
+    @Override
+    public String toString() {
+        return "Arbol{" +
+                "idUser='" + idUser + '\'' +
+                ", bisabuelos=" + bisabuelos +
+                ", abuelos=" + abuelos +
+                ", padres=" + padres +
+                '}';
     }
 
     public String getIdUser() {

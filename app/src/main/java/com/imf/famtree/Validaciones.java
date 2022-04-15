@@ -1,12 +1,44 @@
 package com.imf.famtree;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validaciones {
 
+    // ---------------- FUNCIONALIDADES ----------------
+    public static String devolverTipoMiembro1(int contador) {
+        String devolver = "";
+        String concatenar;
+
+        try {
+            concatenar = Integer.toString(contador);
+            devolver = concatenar.concat(".1");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return devolver;
+        }
+    }
+
+    public static String devolverTipoMiembro2(int contador) {
+        String devolver = "";
+        String concatenar;
+
+        try {
+            concatenar = Integer.toString(contador);
+            devolver = concatenar.concat(".2");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return devolver;
+        }
+    }
+
+    // ---------------- VALIDACIONES ----------------
     public static boolean validarNombre(String nombre) {
         boolean comprobador = true;
 
@@ -14,6 +46,26 @@ public class Validaciones {
             if (nombre.isEmpty() || nombre.length() < 3 || nombre.length() > 20) {
                 comprobador = false;
             }
+        } catch (StringIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        } finally {
+            return comprobador;
+        }
+    }
+
+
+    public static boolean validarEditText(ArrayList<EditText> array) {
+        boolean comprobador = true;
+        int i = 0;
+
+        try {
+            while (comprobador && (i < array.size())) {
+                if (array.get(i).getText().toString().length() < 3) {
+                    comprobador = false;
+                }
+                i++;
+            }
+
         } catch (StringIndexOutOfBoundsException e) {
             e.printStackTrace();
         } finally {
@@ -46,7 +98,7 @@ public class Validaciones {
             c2 = contrasena2.getText().toString();
 
             // comprobamos si estan vacios
-            if (c1.length() < 6 || c2.length() < 6 ) {
+            if (c1.length() < 6 || c2.length() < 6) {
                 comprobador = false;
 
                 // comprobamos si coinciden

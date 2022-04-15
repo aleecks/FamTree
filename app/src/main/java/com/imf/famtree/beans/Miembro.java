@@ -1,17 +1,10 @@
 package com.imf.famtree.beans;
 
-enum Tipo {
-    BISABUELO,
-    ABUELO,
-    PADRE,
-    YO,
-    HIJO
-}
-
 public class Miembro {
-
-    private Tipo tipo;
+    private String tipo;
     private String nombre;
+    private String apellido1;
+    private String getApellido2;
     private String fechaNacimiento;
     private String fechaDefuncion;
     private String foto;
@@ -20,20 +13,43 @@ public class Miembro {
     public Miembro() {
     }
 
-    public Miembro(Tipo tipo, String nombre, String fechaNacimiento, String fechaDefuncion, String foto, String descripcion) {
+    public Miembro(String tipo, String nombre, String apellido1, String getApellido2, String fechaNacimiento, String fechaDefuncion) {
         this.tipo = tipo;
         this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.getApellido2 = getApellido2;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaDefuncion = fechaDefuncion;
+    }
+
+    public Miembro(String tipo, String nombre, String apellido1, String getApellido2, String fechaNacimiento, String fechaDefuncion, String foto) {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.getApellido2 = getApellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaDefuncion = fechaDefuncion;
         this.foto = foto;
-        this.descripcion = descripcion;
     }
 
-    public Tipo getTipo() {
+    @Override
+    public String toString() {
+        return "Miembro{" +
+                "tipo='" + tipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido1='" + apellido1 + '\'' +
+                ", getApellido2='" + getApellido2 + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", fechaDefuncion='" + fechaDefuncion + '\'' +
+                ", foto='" + foto + '\'' +
+                '}';
+    }
+
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -43,6 +59,22 @@ public class Miembro {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido1() {
+        return apellido1;
+    }
+
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
+    }
+
+    public String getGetApellido2() {
+        return getApellido2;
+    }
+
+    public void setGetApellido2(String getApellido2) {
+        this.getApellido2 = getApellido2;
     }
 
     public String getFechaNacimiento() {
