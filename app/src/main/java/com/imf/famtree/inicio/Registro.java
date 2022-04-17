@@ -2,9 +2,15 @@ package com.imf.famtree.inicio;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,20 +21,35 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.imf.famtree.Home;
 import com.imf.famtree.ManejadorBD;
 import com.imf.famtree.R;
 import com.imf.famtree.Validaciones;
 
+import java.util.HashMap;
+
 public class Registro extends AppCompatActivity implements View.OnClickListener {
 
     private EditText txtNombre, txtEmail, txtPass1, txtPass2;
-    private Button btnRegistro, btnVolver;
+    private Button btnRegistro, btnVolver, btnImg;
+    private String fotoUri;
 
     private Intent iEntrar;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private ManejadorBD bd;
+
+    // subir fotografia
+    private static final int File = 1;
+    private StorageReference file_name;
+    private Uri FileUri;
+    private StorageReference folder;
+    ActivityResultLauncher<Intent> someActivityResultLauncher;
 
 
     @Override
@@ -42,16 +63,18 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         txtPass2 = findViewById(R.id.editTxtPass2);
         btnRegistro = findViewById(R.id.btnRegistro);
         btnVolver = findViewById(R.id.btnVolver);
+        btnImg = findViewById(R.id.btnImg);
 
         mAuth = FirebaseAuth.getInstance();
         bd = new ManejadorBD();
+        fotoUri = "vacio";
 
         // ---------------- INTENTS ----------------
         iEntrar = new Intent(this, Home.class);
 
         // ---------------- LISTENERS ----------------
         btnRegistro.setOnClickListener(this);
-
+        btnImg.setOnClickListener(this);
         btnVolver.setOnClickListener(view -> onBackPressed());
     }
 
@@ -93,6 +116,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(getApplicationContext(), "Ha ocurrido algún error", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+
+        } else if (view.getId() == R.id.btnImg) {
+            fileUpload();
         }
 
     }
@@ -104,6 +130,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 // añadimo nombre
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(txtNombre.getText().toString())
+                        //.setPhotoUri(FileUri)
                         .build();
 
                 user.updateProfile(profileUpdates)
@@ -126,5 +153,33 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+    private void fileUpload() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, File);
+        // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == File) {
+            if (resultCode == RESULT_OK) {
+                FileUri = data.getData();
+                folder = FirebaseStorage.getInstance().getReference().child("Imagenes/FotoPerfil");
+                file_name = folder.child("file" + FileUri.getLastPathSegment());
+
+                file_name.putFile(FileUri).addOnSuccessListener(taskSnapshot -> file_name.getDownloadUrl().addOnSuccessListener(uri -> {
+                    fotoUri = String.valueOf(uri);
+                    Toast.makeText(getApplicationContext(), fotoUri, Toast.LENGTH_SHORT).show();
+                    Log.d("Mensaje", "Se subió correctamente");
+
+                }));
+
+            }
+
+        }
+
+    }
 }

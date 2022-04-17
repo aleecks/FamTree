@@ -1,5 +1,6 @@
 package com.imf.famtree;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,34 +21,6 @@ import java.util.regex.Pattern;
 public class Validaciones {
 
     // ---------------- FUNCIONALIDADES ----------------
-    public static void subirFoto() {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-
-        // Create a storage reference from our app
-        StorageReference storageRef = storage.getReference();
-
-        // Create a child reference
-        // imagesRef now points to "images"
-        StorageReference imagesRef = storageRef.child("images");
-
-        Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-        StorageReference riversRef = storageRef.child("images/" + file.getLastPathSegment());
-        UploadTask uploadTask = riversRef.putFile(file);
-
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-            }
-        });
-    }
-
     public static String devolverTipoMiembro1(int contador) {
         String devolver = "";
         String concatenar;

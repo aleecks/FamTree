@@ -56,7 +56,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         btnImg2 = findViewById(R.id.btnImg2);
 
         // --------- MOSTRAMOS TITULO --------
-        lblTitulo.setText("1º Pareja de Bisabuelos");
+        lblTitulo.setText("1º/8 Pareja de Bisabuelos");
 
         //------- INICIAMO VARIABLES --------
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -152,7 +152,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         bisabuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador + 2) + "º Pareja de Bisabuelos");
+                        lblTitulo.setText((contador + 2) + "º/8 Pareja de Bisabuelos");
 
                         // reiniciar vista
                         onRestart();
@@ -168,9 +168,9 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         abuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador - 2) + "º Pareja de Abuelos");
+                        lblTitulo.setText((contador - 2) + "º/4 Pareja de Abuelos");
 
-                        // reiniciar variables
+                        // reiniciar vista
                         onRestart();
 
                     } else if (contador < 6) {
@@ -186,7 +186,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         // cambiar titulo
                         lblTitulo.setText("Padres");
 
-                        // reiniciar variables
+                        // reiniciar vista
                         onRestart();
 
                     } else {
