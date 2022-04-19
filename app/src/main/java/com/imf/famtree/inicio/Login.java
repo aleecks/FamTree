@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private Intent iEntrar;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
-                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        user = mAuth.getCurrentUser();
                                         updateUI(user);
 
                                     } else {
@@ -88,8 +89,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            // User is signed in
-            iEntrar.putExtra("email", txtEmail.getText().toString());
             startActivity(iEntrar);
         }
     }

@@ -2,13 +2,9 @@ package com.imf.famtree.inicio;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,8 +17,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -31,13 +25,11 @@ import com.imf.famtree.ManejadorBD;
 import com.imf.famtree.R;
 import com.imf.famtree.Validaciones;
 
-import java.util.HashMap;
-
 public class Registro extends AppCompatActivity implements View.OnClickListener {
 
     private EditText txtNombre, txtEmail, txtPass1, txtPass2;
     private Button btnRegistro, btnVolver, btnImg;
-    private String fotoUri;
+    private String urlFoto;
 
     private Intent iEntrar;
     private FirebaseAuth mAuth;
@@ -45,12 +37,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     private ManejadorBD bd;
 
     // subir fotografia
+    private boolean fotoSubida;
     private static final int File = 1;
-    private StorageReference file_name;
-    private Uri FileUri;
-    private StorageReference folder;
-    ActivityResultLauncher<Intent> someActivityResultLauncher;
-
+    private Uri fileUri;
+    private StorageReference carpetaFoto;
+    private StorageReference nombreFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +58,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
         mAuth = FirebaseAuth.getInstance();
         bd = new ManejadorBD();
-        fotoUri = "vacio";
+        urlFoto = "imagenes/fotos_perfil/image:32";
+        fotoSubida = false;
 
         // ---------------- INTENTS ----------------
         iEntrar = new Intent(this, Home.class);
@@ -80,7 +72,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.btnRegistro) {
             try {
                 // Validamos los EditText
@@ -118,7 +109,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
             }
 
         } else if (view.getId() == R.id.btnImg) {
-            fileUpload();
+            if (!fotoSubida) {
+                fileUpload();
+            }
         }
 
     }
@@ -127,10 +120,10 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         try {
             if (user != null) {
                 // User is signed in
-                // añadimo nombre
+                // añadimo nombre foto uri
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(txtNombre.getText().toString())
-                        //.setPhotoUri(FileUri)
+                        .setPhotoUri(fileUri)
                         .build();
 
                 user.updateProfile(profileUpdates)
@@ -143,7 +136,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                             }
                         });
                 // metemos usuario en la bd
-                bd.crearUsuario(user.getUid(), txtNombre.getText().toString(), txtEmail.getText().toString());
+                bd.crearUsuario(user.getUid(), txtNombre.getText().toString(), txtEmail.getText().toString(), urlFoto);
 
                 // entramos en la app
                 startActivity(iEntrar);
@@ -166,16 +159,23 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
         if (requestCode == File) {
             if (resultCode == RESULT_OK) {
-                FileUri = data.getData();
-                folder = FirebaseStorage.getInstance().getReference().child("Imagenes/FotoPerfil");
-                file_name = folder.child("file" + FileUri.getLastPathSegment());
+                fileUri = data.getData();
+                carpetaFoto = FirebaseStorage.getInstance().getReference().child("imagenes/fotos_perfil");
+                nombreFoto = carpetaFoto.child(fileUri.getLastPathSegment());
 
-                file_name.putFile(FileUri).addOnSuccessListener(taskSnapshot -> file_name.getDownloadUrl().addOnSuccessListener(uri -> {
+                /*.putFile(fileUri).addOnSuccessListener(taskSnapshot -> file_name.getDownloadUrl().addOnSuccessListener(uri -> {
                     fotoUri = String.valueOf(uri);
-                    Toast.makeText(getApplicationContext(), fotoUri, Toast.LENGTH_SHORT).show();
                     Log.d("Mensaje", "Se subió correctamente");
+                    fotoSubida = true;
+                    Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
+                }));*/
 
-                }));
+                nombreFoto.putFile(fileUri).addOnSuccessListener(taskSnapshot -> {
+                    Log.d("Mensaje", "Se subió correctamente");
+                    fotoSubida = true;
+                    urlFoto = "imagenes/fotos_perfil/" + fileUri.getLastPathSegment();
+                    Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
+                });
 
             }
 

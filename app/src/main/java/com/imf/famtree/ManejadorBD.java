@@ -30,12 +30,12 @@ public class ManejadorBD {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
-    public void crearUsuario(String uid, String displayName, String email) {
+    public void crearUsuario(String uid, String displayName, String email, String photoUrl) {
         Map<String, Object> user = new HashMap<>();
         user.put("uid", uid);
         user.put("nombre", displayName);
         user.put("email", email);
-        //user.put("url_foto", photoUrl);
+        user.put("url_foto", photoUrl);
 
         db.collection("users").document(email)
                 .set(user)
@@ -55,7 +55,7 @@ public class ManejadorBD {
     }
 
     @SuppressLint("RestrictedApi")
-    public void anadirMiembro(@NonNull User user, @NonNull Miembro miembro) {
+    public void anadirMiembro(String email, String slotArbol, @NonNull Miembro miembro) {
         Map<String, Object> nuevoMiembro = new HashMap<>();
         nuevoMiembro.put("nombre", miembro.getNombre());
         nuevoMiembro.put("apellido_1", miembro.getApellido1());
@@ -67,18 +67,18 @@ public class ManejadorBD {
 
 
         if (Double.parseDouble(miembro.getTipo()) < 4) {
-            db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("bisabuelos").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(slotArbol).collection("bisabuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo bisabuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
 
         } else if (Double.parseDouble(miembro.getTipo()) < 6) {
-            db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("abuelos").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(slotArbol).collection("abuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo abuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
         } else {
-            db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("padres").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(slotArbol).collection("padres").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo padre añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el padre", e));
