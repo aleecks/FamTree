@@ -2,22 +2,15 @@ package com.imf.famtree;
 
 import static android.content.ContentValues.TAG;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.firebase.ui.auth.data.model.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
+import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +20,7 @@ public class ManejadorBD {
     }
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    // private final FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
     public void crearUsuario(String uid, String displayName, String email, String photoUrl) {
@@ -43,42 +36,87 @@ public class ManejadorBD {
                 .addOnFailureListener(e -> Log.w(TAG, "No se pudo añadir el usuario", e));
     }
 
-    @SuppressLint("RestrictedApi")
-    public void crearArbol(@NonNull User user) {
-        Map<String, Object> tree = new HashMap<>();
+    public void crearArbol(String userEmail, @NonNull Arbol arbol) {
+        String nombreArbol = arbol.getNombreArbol();
+        Miembro miembro;
+        Map<String, Object> nuevoMiembro = new HashMap<>();
 
-        // Add a new document with a generated ID
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol1")
-                .set(tree)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo arbol creado"))
-                .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el arbol", e));
+        // subir bisabuelos
+        for (int i = 0; i < arbol.getBisabuelos().size(); i++) {
+            miembro = arbol.getBisabuelos().get(i);
+            rellenarMiembro(miembro, nuevoMiembro);
+
+            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("bisabuelos").document(miembro.getTipo())
+                    .set(nuevoMiembro)
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Bisabuelo añadido"))
+                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
+
+        }
+
+        // subir abuelos
+        for (int i = 0; i < arbol.getAbuelos().size(); i++) {
+            miembro = arbol.getBisabuelos().get(i);
+            rellenarMiembro(miembro, nuevoMiembro);
+
+            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
+                    .set(nuevoMiembro)
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Abuelo añadido"))
+                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
+
+        }
+
+        // subir padres
+        for (int i = 0; i < arbol.getPadres().size(); i++) {
+            miembro = arbol.getBisabuelos().get(i);
+            rellenarMiembro(miembro, nuevoMiembro);
+
+            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
+                    .set(nuevoMiembro)
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Abuelo añadido"))
+                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
+
+        }
+
+        miembro = arbol.getTu();
+        rellenarMiembro(miembro, nuevoMiembro);
+        db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("usuario").document(miembro.getTipo())
+                .set(nuevoMiembro)
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario añadido al arbol"))
+                .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el usuario en el arbol", e));
     }
 
-    @SuppressLint("RestrictedApi")
-    public void anadirMiembro(String email, String slotArbol, @NonNull Miembro miembro) {
+    private void rellenarMiembro(@NonNull Miembro miembro, @NonNull Map<String, Object> nuevoMiembro) {
+        nuevoMiembro.put("nombre", miembro.getNombre());
+        nuevoMiembro.put("apellido_1", miembro.getApellido1());
+        nuevoMiembro.put("apellido_2", miembro.getApellido2());
+        nuevoMiembro.put("fecha_nacimiento", miembro.getFechaNacimiento());
+        nuevoMiembro.put("fecha_defuncion", miembro.getFechaDefuncion());
+        nuevoMiembro.put("url_foto", miembro.getUrlFoto());
+
+    }
+
+    /*public void anadirMiembro(String email, String nombreArbol, @NonNull Miembro miembro) {
         Map<String, Object> nuevoMiembro = new HashMap<>();
         nuevoMiembro.put("nombre", miembro.getNombre());
         nuevoMiembro.put("apellido_1", miembro.getApellido1());
         nuevoMiembro.put("apellido_2", miembro.getApellido2());
         nuevoMiembro.put("fecha_nacimiento", miembro.getFechaNacimiento());
         nuevoMiembro.put("fecha_defuncion", miembro.getFechaDefuncion());
-        // nuevoMiembro.put("url_foto", miembro.getFoto());
-        // nuevoMiembro.put("descripcion", miembro.getDescripcion();
-
+        nuevoMiembro.put("url_foto", miembro.getUrlFoto());
 
         if (Double.parseDouble(miembro.getTipo()) < 4) {
-            db.collection("users").document(email).collection("tree").document(slotArbol).collection("bisabuelos").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("bisabuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo bisabuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
 
         } else if (Double.parseDouble(miembro.getTipo()) < 6) {
-            db.collection("users").document(email).collection("tree").document(slotArbol).collection("abuelos").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo abuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
         } else {
-            db.collection("users").document(email).collection("tree").document(slotArbol).collection("padres").document(miembro.getTipo())
+            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("padres").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo padre añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el padre", e));
@@ -97,7 +135,7 @@ public class ManejadorBD {
         uploadTask.addOnFailureListener(error -> Log.w(TAG, "No se pudo guardar el abuelo", error))
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "La imagen se ha subido correctamente"));
 
-    }
+    }*/
 
 
 }

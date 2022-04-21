@@ -3,15 +3,15 @@ package com.imf.famtree;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
@@ -20,10 +20,11 @@ import java.util.Calendar;
 
 public class CrearMiembro extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseUser user;
     private Arbol arbol;
     private Miembro miembro1, miembro2;
-    private ArrayList<Miembro> bisabuelos, abuelos, padres, hijos;
+    private ArrayList<Miembro> bisabuelos, abuelos, padres;
+
+    private String urlFoto;
 
     private DatePickerDialog datePicker;
     private Calendar c;
@@ -34,6 +35,10 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
     private ArrayList<EditText> editTexts;
     private TextView lblTitulo;
     private Button btnFechaN1, btnFechaN2, btnFechaD1, btnFechaD2, btnSiguiente, btnImg1, btnImg2;
+
+    private Intent iSalir, iSeguir;
+    private Bundle extras;
+    private String nombreArbol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +64,13 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         lblTitulo.setText("1º/8 Pareja de Bisabuelos");
 
         //------- INICIAMO VARIABLES --------
-        user = FirebaseAuth.getInstance().getCurrentUser();
         bisabuelos = new ArrayList<>();
         abuelos = new ArrayList<>();
         padres = new ArrayList<>();
         arbol = new Arbol();
         contador = 0;
+        nombreArbol = extras.getString("nombreArbol");
+        urlFoto = "imagenes/fotos_perfil/image:32";
 
         // ----------- CALENDARIO --------
         c = Calendar.getInstance();
@@ -80,6 +86,10 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         editTexts.add(txtApellido12);
         editTexts.add(txtApellido21);
         editTexts.add(txtApellido22);
+
+        // ----------- INTENTS --------
+        iSalir = new Intent(this, Home.class);
+        iSeguir = new Intent(this, SubirArbol.class);
 
         // ----------- LISTENERS --------
         btnSiguiente.setOnClickListener(this);
@@ -144,8 +154,8 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                     if (contador < 3) {
                         // ------ BISABUELOS -----
                         // crear objetos
-                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1);
-                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2);
+                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
+                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2, urlFoto);
 
                         // agregar al array correspondiente
                         bisabuelos.add(miembro1);
@@ -160,8 +170,8 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                     } else if (contador < 5) {
                         // ------ ABUELOS -----
                         // crear objetos
-                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1);
-                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2);
+                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
+                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2, urlFoto);
 
                         // agregar al array correspondiente
                         abuelos.add(miembro1);
@@ -176,8 +186,8 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                     } else if (contador < 6) {
                         // ------ PADRES -----
                         // crear objetos
-                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1);
-                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2);
+                        miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
+                        miembro2 = new Miembro(Validaciones.devolverTipoMiembro2(contador), txtNombre2.getText().toString(), txtApellido21.getText().toString(), txtApellido22.getText().toString(), fechaN2, fechaD2, urlFoto);
 
                         // agregar al array correspondiente
                         padres.add(miembro1);
@@ -190,15 +200,14 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         onRestart();
 
                     } else {
-                        // reiniciar variables
-                        onRestart();
-
                         // rellenamos arbol
-                        arbol = new Arbol(user.getUid(), bisabuelos, abuelos, padres);
-
+                        arbol = new Arbol(nombreArbol, bisabuelos, abuelos, padres);
+                        iSeguir.putExtra("arbol", (Parcelable) arbol);
+                        startActivity(iSeguir);
                     }
 
                 }
+
                 break;
 
             case R.id.btnImg1:

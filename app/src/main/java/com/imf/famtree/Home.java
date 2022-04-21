@@ -7,13 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.imf.famtree.inicio.Inicio;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements View.OnClickListener {
+
+    private String nombreArbol;
 
     private TextView lblNombre, lblCorreo, lblId;
     private Button btnLogOut, btnCrearArbol;
@@ -37,26 +38,40 @@ public class Home extends AppCompatActivity {
         iInicio = new Intent(this, Inicio.class);
         iArbol = new Intent(this, CrearMiembro.class);
 
-        // -------------- LISTENERS --------
-        btnLogOut.setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(iInicio);
-        });
+        lblNombre.setText(user.getDisplayName());
+        lblCorreo.setText(user.getEmail());
+        lblId.setText(user.getUid());
 
-        btnCrearArbol.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(iArbol);
-            }
-        });
+        // -------------- LISTENERS --------
+        btnLogOut.setOnClickListener(this);
+        btnCrearArbol.setOnClickListener(this);
 
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        lblNombre.setText(user.getDisplayName());
-        lblCorreo.setText(user.getEmail());
-        lblId.setText(user.getUid());
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnLogOut:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(iInicio);
+                break;
+
+            case R.id.btnArbol1:
+                nombreArbol = "arbol1";
+                iArbol.putExtra("nombreArbol", nombreArbol);
+                startActivity(iArbol);
+                /*break;
+
+            case R.id.btnArbol2:
+                nombreArbol = "arbol2";
+                iArbol.putExtra("nombreArbol", nombreArbol);
+                startActivity(iArbol);
+                break;
+
+            case R.id.btnArbol3:
+                nombreArbol = "arbol3";
+                iArbol.putExtra("nombreArbol", nombreArbol);
+                startActivity(iArbol);*/
+        }
     }
 }

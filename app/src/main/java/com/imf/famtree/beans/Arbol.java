@@ -4,38 +4,47 @@ import java.util.ArrayList;
 
 public class Arbol {
 
-    private String idUser;
+    private String nombreArbol;
     private ArrayList<Miembro> bisabuelos;
     private ArrayList<Miembro> abuelos;
     private ArrayList<Miembro> padres;
-    private ArrayList<Miembro> hijos;
+    private Miembro tu;
 
     public Arbol() {
     }
 
-    public Arbol(String idUser, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
-        this.idUser = idUser;
+    public Arbol(String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
+        this.nombreArbol = nombreArbol;
         this.bisabuelos = bisabuelos;
         this.abuelos = abuelos;
         this.padres = padres;
     }
 
+    public Arbol(String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres, Miembro tu) {
+        this.nombreArbol = nombreArbol;
+        this.bisabuelos = bisabuelos;
+        this.abuelos = abuelos;
+        this.padres = padres;
+        this.tu = tu;
+    }
+
     @Override
     public String toString() {
         return "Arbol{" +
-                "idUser='" + idUser + '\'' +
+                "nombreArbol='" + nombreArbol + '\'' +
                 ", bisabuelos=" + bisabuelos +
                 ", abuelos=" + abuelos +
                 ", padres=" + padres +
+                ", tu=" + tu +
                 '}';
     }
 
-    public String getIdUser() {
-        return idUser;
+    public String getNombreArbol() {
+        return nombreArbol;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setNombreArbol(String nombreArbol) {
+        this.nombreArbol = nombreArbol;
     }
 
     public ArrayList<Miembro> getBisabuelos() {
@@ -62,11 +71,11 @@ public class Arbol {
         this.padres = padres;
     }
 
-    public ArrayList<Miembro> getHijos() {
-        return hijos;
+    public Miembro getTu() {
+        return tu;
     }
 
-    public void setHijos(ArrayList<Miembro> hijos) {
-        this.hijos = hijos;
+    public void setTu(Miembro tu) {
+        this.tu = tu;
     }
 }

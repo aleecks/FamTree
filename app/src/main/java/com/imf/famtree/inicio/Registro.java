@@ -2,7 +2,6 @@ package com.imf.famtree.inicio;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -135,7 +134,16 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                                 Toast.makeText(getApplicationContext(), "El nombre no se pudo añadir", Toast.LENGTH_SHORT).show();
                             }
                         });
-                // metemos usuario en la bd
+
+                // subimos fotografía
+                if (fotoSubida) {
+                    nombreFoto.putFile(fileUri).addOnSuccessListener(taskSnapshot -> {
+                        Log.d("Mensaje", "Se subió correctamente");
+                        Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
+                    });
+                }
+
+                // introducimos usuario en la bd
                 bd.crearUsuario(user.getUid(), txtNombre.getText().toString(), txtEmail.getText().toString(), urlFoto);
 
                 // entramos en la app
@@ -146,13 +154,14 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+
+    // ------- SUBIR FOTOGRAFIA --------
     private void fileUpload() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         startActivityForResult(intent, File);
         // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,6 +171,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 fileUri = data.getData();
                 carpetaFoto = FirebaseStorage.getInstance().getReference().child("imagenes/fotos_perfil");
                 nombreFoto = carpetaFoto.child(fileUri.getLastPathSegment());
+                urlFoto = "imagenes/fotos_perfil/" + fileUri.getLastPathSegment();
+                fotoSubida = true;
 
                 /*.putFile(fileUri).addOnSuccessListener(taskSnapshot -> file_name.getDownloadUrl().addOnSuccessListener(uri -> {
                     fotoUri = String.valueOf(uri);
@@ -170,12 +181,12 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                     Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
                 }));*/
 
-                nombreFoto.putFile(fileUri).addOnSuccessListener(taskSnapshot -> {
+                /*nombreFoto.putFile(fileUri).addOnSuccessListener(taskSnapshot -> {
                     Log.d("Mensaje", "Se subió correctamente");
                     fotoSubida = true;
                     urlFoto = "imagenes/fotos_perfil/" + fileUri.getLastPathSegment();
                     Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
-                });
+                });*/
 
             }
 

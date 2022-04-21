@@ -7,7 +7,7 @@ public class Miembro {
     private String Apellido2;
     private String fechaNacimiento;
     private String fechaDefuncion;
-    private String foto;
+    private String urlFoto;
     private String descripcion;
 
     public Miembro() {
@@ -22,14 +22,14 @@ public class Miembro {
         this.fechaDefuncion = fechaDefuncion;
     }
 
-    public Miembro(String tipo, String nombre, String apellido1, String Apellido2, String fechaNacimiento, String fechaDefuncion, String foto) {
+    public Miembro(String tipo, String nombre, String apellido1, String Apellido2, String fechaNacimiento, String fechaDefuncion, String urlFoto) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.Apellido2 = Apellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaDefuncion = fechaDefuncion;
-        this.foto = foto;
+        this.urlFoto = urlFoto;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Miembro {
                 ", getApellido2='" + Apellido2 + '\'' +
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", fechaDefuncion='" + fechaDefuncion + '\'' +
-                ", foto='" + foto + '\'' +
+                ", foto='" + urlFoto + '\'' +
                 '}';
     }
 
@@ -93,12 +93,12 @@ public class Miembro {
         this.fechaDefuncion = fechaDefuncion;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
     public String getDescripcion() {
