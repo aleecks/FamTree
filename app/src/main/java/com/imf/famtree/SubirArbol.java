@@ -1,5 +1,6 @@
 package com.imf.famtree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -27,7 +28,6 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     private String urlFoto;
 
     private Intent iSubir;
-    private Bundle extras;
 
     private DatePickerDialog datePicker;
     private Calendar c;
@@ -50,7 +50,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
         btnFecha = findViewById(R.id.btnFecha);
 
         // ----- INICILIZAR VARIABLES -------
-        arbol = extras.getParcelable("arbol");
+        arbol = (Arbol) getIntent().getSerializableExtra("arbol");
         fecha = "";
         bd = new ManejadorBD();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -71,7 +71,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         switch (view.getId()) {
             case R.id.btnImg:
                 break;
@@ -91,7 +91,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(getApplicationContext(), "Debes rellenar la fechas de nacimineto", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    miembro = new Miembro("usuario", txtNombre.getText().toString(), txtApellido1.getText().toString(), txtApellido2.getText().toString(), fecha, "", urlFoto);
+                    miembro = new Miembro("usuario", txtNombre.getText().toString(), txtApellido1.getText().toString(), txtApellido2.getText().toString(), fecha, "vivo", urlFoto);
                     arbol.setTu(miembro);
                     bd.crearArbol(user.getEmail(), arbol);
                     startActivity(iSubir);

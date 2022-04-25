@@ -1,6 +1,8 @@
 package com.imf.famtree.beans;
 
-public class Miembro {
+import java.io.Serializable;
+
+public class Miembro implements Serializable {
     private String tipo;
     private String nombre;
     private String apellido1;

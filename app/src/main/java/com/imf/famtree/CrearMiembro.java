@@ -61,7 +61,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         btnImg2 = findViewById(R.id.btnImg2);
 
         // --------- MOSTRAMOS TITULO --------
-        lblTitulo.setText("1º/8 Pareja de Bisabuelos");
+        lblTitulo.setText("1º/4 Pareja de Bisabuelos");
 
         //------- INICIAMO VARIABLES --------
         bisabuelos = new ArrayList<>();
@@ -69,6 +69,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         padres = new ArrayList<>();
         arbol = new Arbol();
         contador = 0;
+        extras = getIntent().getExtras();
         nombreArbol = extras.getString("nombreArbol");
         urlFoto = "imagenes/fotos_perfil/image:32";
 
@@ -162,7 +163,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         bisabuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador + 2) + "º/8 Pareja de Bisabuelos");
+                        lblTitulo.setText((contador + 2) + "º/4 Pareja de Bisabuelos");
 
                         // reiniciar vista
                         onRestart();
@@ -178,7 +179,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         abuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador - 2) + "º/4 Pareja de Abuelos");
+                        lblTitulo.setText((contador - 2) + "º/2 Pareja de Abuelos");
 
                         // reiniciar vista
                         onRestart();
@@ -202,7 +203,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                     } else {
                         // rellenamos arbol
                         arbol = new Arbol(nombreArbol, bisabuelos, abuelos, padres);
-                        iSeguir.putExtra("arbol", (Parcelable) arbol);
+                        iSeguir.putExtra("arbol", arbol);
                         startActivity(iSeguir);
                     }
 

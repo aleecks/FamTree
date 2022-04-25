@@ -1,8 +1,9 @@
 package com.imf.famtree.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Arbol {
+public class Arbol implements Serializable {
 
     private String nombreArbol;
     private ArrayList<Miembro> bisabuelos;

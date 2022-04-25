@@ -70,7 +70,7 @@ public class ManejadorBD {
             miembro = arbol.getBisabuelos().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
-            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
+            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("padres").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Abuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
