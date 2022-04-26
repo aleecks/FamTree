@@ -55,7 +55,7 @@ public class ManejadorBD {
 
         // subir abuelos
         for (int i = 0; i < arbol.getAbuelos().size(); i++) {
-            miembro = arbol.getBisabuelos().get(i);
+            miembro = arbol.getAbuelos().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
             db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
@@ -67,12 +67,12 @@ public class ManejadorBD {
 
         // subir padres
         for (int i = 0; i < arbol.getPadres().size(); i++) {
-            miembro = arbol.getBisabuelos().get(i);
+            miembro = arbol.getPadres().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
             db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("padres").document(miembro.getTipo())
                     .set(nuevoMiembro)
-                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Abuelo añadido"))
+                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Padre añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
 
         }

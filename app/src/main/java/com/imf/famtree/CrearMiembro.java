@@ -1,5 +1,6 @@
 package com.imf.famtree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -126,6 +127,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         txtApellido12.setHint("Segundo Apellido");
         txtApellido22.setHint("Segundo Apellido");
 
+        Toast.makeText(getApplicationContext(), "Contador" + contador, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -139,7 +141,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         switch (view.getId()) {
             case R.id.btnSiguiente:
                 // comprobar si text fields estan vacios
@@ -152,7 +154,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
 
                 } else {
                     // elegir tipo de miembro
-                    if (contador < 3) {
+                    if (contador < 4) {
                         // ------ BISABUELOS -----
                         // crear objetos
                         miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
@@ -164,11 +166,14 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
 
                         // cambiar titulo
                         lblTitulo.setText((contador + 2) + "º/4 Pareja de Bisabuelos");
+                        if (contador == 3) {
+                            lblTitulo.setText((contador - 2) + "º/2 Pareja de Abuelos");
+                        }
 
                         // reiniciar vista
                         onRestart();
 
-                    } else if (contador < 5) {
+                    } else if (contador < 6) {
                         // ------ ABUELOS -----
                         // crear objetos
                         miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
@@ -180,11 +185,14 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
 
                         // cambiar titulo
                         lblTitulo.setText((contador - 2) + "º/2 Pareja de Abuelos");
+                        if (contador == 5) {
+                            lblTitulo.setText("Padres");
+                        }
 
                         // reiniciar vista
                         onRestart();
 
-                    } else if (contador < 6) {
+                    } else {
                         // ------ PADRES -----
                         // crear objetos
                         miembro1 = new Miembro(Validaciones.devolverTipoMiembro1(contador), txtNombre1.getText().toString(), txtApellido11.getText().toString(), txtApellido12.getText().toString(), fechaN1, fechaD1, urlFoto);
@@ -194,17 +202,11 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         padres.add(miembro1);
                         padres.add(miembro2);
 
-                        // cambiar titulo
-                        lblTitulo.setText("Padres");
-
-                        // reiniciar vista
-                        onRestart();
-
-                    } else {
                         // rellenamos arbol
                         arbol = new Arbol(nombreArbol, bisabuelos, abuelos, padres);
                         iSeguir.putExtra("arbol", arbol);
                         startActivity(iSeguir);
+
                     }
 
                 }

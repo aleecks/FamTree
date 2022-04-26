@@ -71,7 +71,7 @@ public class Validaciones {
 
         try {
             while (comprobador && (i < array.size())) {
-                if (array.get(i).getText().toString().length() < 3) {
+                if (array.get(i).getText().toString().length() < 1) {
                     comprobador = false;
                 }
                 i++;

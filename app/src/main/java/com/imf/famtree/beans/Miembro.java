@@ -34,6 +34,17 @@ public class Miembro implements Serializable {
         this.urlFoto = urlFoto;
     }
 
+    public Miembro(String tipo, String nombre, String apellido1, String apellido2, String fechaNacimiento, String fechaDefuncion, String urlFoto, String descripcion) {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        Apellido2 = apellido2;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaDefuncion = fechaDefuncion;
+        this.urlFoto = urlFoto;
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
         return "Miembro{" +
