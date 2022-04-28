@@ -17,6 +17,7 @@
         android:textSize="30sp" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="368dp"
         android:layout_height="510dp"
         android:layout_gravity="center"
@@ -37,15 +38,6 @@
                 android:layout_marginTop="30dp"
                 android:text="1ºMiembro"
                 android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/btnImg1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@android:drawable/ic_menu_camera"
-                tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/txtNombre1"
@@ -131,15 +123,6 @@
                 android:layout_marginTop="65dp"
                 android:text="2ºMiembro"
                 android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/btnImg2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@android:drawable/ic_menu_camera"
-                tools:ignore="SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/txtNombre2"

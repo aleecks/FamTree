@@ -1,5 +1,6 @@
 package com.imf.famtree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,8 @@ import com.imf.famtree.inicio.Inicio;
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
     private String nombreArbol;
+
+    private Boolean isArbol1, isArbol2, isArbol3;
 
     private TextView lblNombre, lblCorreo, lblId;
     private Button btnLogOut, btnCrearArbol;
@@ -46,10 +49,15 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         btnLogOut.setOnClickListener(this);
         btnCrearArbol.setOnClickListener(this);
 
+        // ---- COMPROBAR SI USUARIO TIENE ALGUN ARBOL ---
+
+            // ---- CAMBIAR NOMBRE BOTONES ---
+
+
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         switch (view.getId()) {
             case R.id.btnLogOut:
                 FirebaseAuth.getInstance().signOut();

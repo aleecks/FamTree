@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
@@ -25,8 +30,6 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     private ManejadorBD bd;
     private FirebaseUser user;
 
-    private String urlFoto;
-
     private Intent iSubir;
 
     private DatePickerDialog datePicker;
@@ -37,10 +40,18 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     private EditText txtNombre, txtApellido1, txtApellido2, txtDescripcion;
     private Button btnImg, btnSubir, btnFecha;
 
+    // subir fotografia
+    private String urlFoto;
+    private boolean fotoSubida;
+    private static final int File = 1;
+    private Uri fileUri;
+    private StorageReference carpetaFoto;
+    private StorageReference nombreFoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subir_arbol);
+        setContentView(R.layout.vista_subir_arbol);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtApellido1 = findViewById(R.id.txtApellido1);
@@ -57,6 +68,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
         user = FirebaseAuth.getInstance().getCurrentUser();
         iSubir = new Intent(this, Home.class);
         urlFoto = "imagenes/fotos_perfil/image:32";
+        fotoSubida = false;
 
         // ----------- CALENDARIO --------
         c = Calendar.getInstance();
@@ -75,6 +87,9 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     public void onClick(@NonNull View view) {
         switch (view.getId()) {
             case R.id.btnImg:
+                if (!fotoSubida) {
+                    fileUpload();
+                }
                 break;
 
             case R.id.btnFecha:
@@ -94,9 +109,43 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
                 } else {
                     miembro = new Miembro("usuario", txtNombre.getText().toString(), txtApellido1.getText().toString(), txtApellido2.getText().toString(), fecha, "vivo", urlFoto, txtDescripcion.getText().toString());
                     arbol.setTu(miembro);
+
+                    // subimos arbol
                     bd.crearArbol(user.getEmail(), arbol);
                     startActivity(iSubir);
+
+                    // subimos fotografía
+                    if (fotoSubida) {
+                        nombreFoto.putFile(fileUri).addOnSuccessListener(taskSnapshot -> {
+                            Log.d("Mensaje", "Se subió correctamente");
+                            Toast.makeText(getApplicationContext(), "Foto subida correctamente", Toast.LENGTH_SHORT).show();
+                        });
+                    }
                 }
+
+        }
+    }
+
+    // ------- SUBIR FOTOGRAFIA --------
+    private void fileUpload() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, File);
+        // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == File) {
+            if (resultCode == RESULT_OK) {
+                fileUri = data.getData();
+                carpetaFoto = FirebaseStorage.getInstance().getReference().child("imagenes/fotos_perfil");
+                nombreFoto = carpetaFoto.child(fileUri.getLastPathSegment());
+                urlFoto = "imagenes/fotos_perfil/" + fileUri.getLastPathSegment();
+                fotoSubida = true;
+
+            }
 
         }
     }

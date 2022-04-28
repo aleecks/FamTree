@@ -10,6 +10,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +33,11 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
     private int dia, mes, ano, contador;
     private String fechaN1, fechaN2, fechaD1, fechaD2;
 
+    private ScrollView scrollView;
     private EditText txtNombre1, txtNombre2, txtApellido11, txtApellido12, txtApellido21, txtApellido22;
     private ArrayList<EditText> editTexts;
     private TextView lblTitulo;
-    private Button btnFechaN1, btnFechaN2, btnFechaD1, btnFechaD2, btnSiguiente, btnImg1, btnImg2;
+    private Button btnFechaN1, btnFechaN2, btnFechaD1, btnFechaD2, btnSiguiente;
 
     private Intent iSalir, iSeguir;
     private Bundle extras;
@@ -58,8 +60,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         btnFechaD1 = findViewById(R.id.btnDefuncion1);
         btnFechaD2 = findViewById(R.id.btnDefuncion2);
         btnSiguiente = findViewById(R.id.btnSiguiente);
-        btnImg1 = findViewById(R.id.btnImg1);
-        btnImg2 = findViewById(R.id.btnImg2);
+        scrollView = findViewById(R.id.scrollView);
 
         // --------- MOSTRAMOS TITULO --------
         lblTitulo.setText("1º/4 Pareja de Bisabuelos");
@@ -99,13 +100,16 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         btnFechaN2.setOnClickListener(this);
         btnFechaD1.setOnClickListener(this);
         btnFechaD2.setOnClickListener(this);
-        btnImg1.setOnClickListener(this);
-        btnImg2.setOnClickListener(this);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        // ----- SUBIR SCROLLVIEW -------
+        scrollView.fullScroll(View.FOCUS_UP);
+
         // ----- INICILIZAR VARIABLES -------
         fechaN1 = "";
         fechaN2 = "";
@@ -211,12 +215,6 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
 
                 }
 
-                break;
-
-            case R.id.btnImg1:
-                break;
-
-            case R.id.btnImg2:
                 break;
 
             case R.id.btnNacimiento1:

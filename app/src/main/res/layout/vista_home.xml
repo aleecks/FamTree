@@ -16,62 +16,31 @@
         android:layout_marginTop="30dp"
         android:text="Cerrar Sesión" />
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
+
+    <Button
+        android:id="@+id/btnArbol1"
+        android:layout_width="261dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center">
+        android:text="Nuevo Árbol" />
 
-        <Button
-            android:id="@+id/btnArbol1"
-            android:layout_width="261dp"
-            android:layout_height="wrap_content"
-            android:text="Nuevo Árbol" />
 
-        <Button
-            android:id="@+id/btnOpciones1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="..." />
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnArbol2"
+        android:layout_width="261dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center">
+        android:text="Nuevo Árbol" />
 
-        <Button
-            android:id="@+id/btnArbol2"
-            android:layout_width="261dp"
-            android:layout_height="wrap_content"
-            android:text="Nuevo Árbol" />
-
-        <Button
-            android:id="@+id/btnOpciones2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="..." />
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnArbol3"
+        android:layout_width="261dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center">
-
-        <Button
-            android:id="@+id/btnArbol3"
-            android:layout_width="261dp"
-            android:layout_height="wrap_content"
-            android:text="Nuevo Árbol" />
-
-        <Button
-            android:id="@+id/btnOpciones3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="..." />
-    </androidx.gridlayout.widget.GridLayout>
+        android:text="Nuevo Árbol" />
 
     <TextView
         android:id="@+id/lblNombre"
@@ -79,8 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="90dp"
-        android:textSize="20dp"
-        android:text="Nombre" />
+        android:text="Nombre"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/lblCorreo"
@@ -88,8 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:textSize="20dp"
-        android:text="Correo" />
+        android:text="Correo"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/lblUID"
