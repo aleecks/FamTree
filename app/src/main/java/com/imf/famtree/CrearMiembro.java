@@ -131,7 +131,6 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         txtApellido12.setHint("Segundo Apellido");
         txtApellido22.setHint("Segundo Apellido");
 
-        Toast.makeText(getApplicationContext(), "Contador" + contador, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -2,10 +2,18 @@ package com.imf.famtree;
 
 import static android.content.ContentValues.TAG;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
+import android.annotation.SuppressLint;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.beans.Arbol;
@@ -95,6 +103,29 @@ public class ManejadorBD {
 
     }
 
+    public boolean existeArbol(String userEmail, String tipoArbol) {
+        final boolean[] comprobador = {true};
+        DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol);
+
+        try {
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (!document.exists()) {
+                        Log.d(TAG, "No such document");
+                        comprobador[0] =false;
+                    }
+
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return comprobador[0];
+    }
     /*public void anadirMiembro(String email, String nombreArbol, @NonNull Miembro miembro) {
         Map<String, Object> nuevoMiembro = new HashMap<>();
         nuevoMiembro.put("nombre", miembro.getNombre());

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity
+            android:name=".MostrarArbol"
+            android:exported="false" />
+        <activity
             android:name=".SubirArbol"
             android:exported="false" />
         <activity
