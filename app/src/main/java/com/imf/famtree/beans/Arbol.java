@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Arbol implements Serializable {
 
+    private String tipoArbol;
     private String nombreArbol;
     private ArrayList<Miembro> bisabuelos;
     private ArrayList<Miembro> abuelos;
@@ -12,6 +13,14 @@ public class Arbol implements Serializable {
     private Miembro tu;
 
     public Arbol() {
+    }
+
+    public Arbol(String tipoArbol, String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
+        this.tipoArbol = tipoArbol;
+        this.nombreArbol = nombreArbol;
+        this.bisabuelos = bisabuelos;
+        this.abuelos = abuelos;
+        this.padres = padres;
     }
 
     public Arbol(String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
@@ -38,6 +47,14 @@ public class Arbol implements Serializable {
                 ", padres=" + padres +
                 ", tu=" + tu +
                 '}';
+    }
+
+    public String getTipoArbol() {
+        return tipoArbol;
+    }
+
+    public void setTipoArbol(String tipoArbol) {
+        this.tipoArbol = tipoArbol;
     }
 
     public String getNombreArbol() {

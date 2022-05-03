@@ -2,18 +2,12 @@ package com.imf.famtree;
 
 import static android.content.ContentValues.TAG;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.beans.Arbol;
@@ -46,15 +40,24 @@ public class ManejadorBD {
 
     public void crearArbol(String userEmail, @NonNull Arbol arbol) {
         String nombreArbol = arbol.getNombreArbol();
+        String tipoArbol = arbol.getTipoArbol();
         Miembro miembro;
         Map<String, Object> nuevoMiembro = new HashMap<>();
+        Map<String, Object> nombreHM = new HashMap<>();
+
+        // guardar nombre del arbol
+        nombreHM.put("nombre_arbol", nombreArbol);
+        db.collection("users").document(userEmail).collection("tree").document(tipoArbol)
+                .set(nombreHM)
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Bisabuelo añadido"))
+                .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
 
         // subir bisabuelos
         for (int i = 0; i < arbol.getBisabuelos().size(); i++) {
             miembro = arbol.getBisabuelos().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
-            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("bisabuelos").document(miembro.getTipo())
+            db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection("bisabuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Bisabuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
@@ -66,7 +69,7 @@ public class ManejadorBD {
             miembro = arbol.getAbuelos().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
-            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
+            db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection("abuelos").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Abuelo añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
@@ -78,7 +81,7 @@ public class ManejadorBD {
             miembro = arbol.getPadres().get(i);
             rellenarMiembro(miembro, nuevoMiembro);
 
-            db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("padres").document(miembro.getTipo())
+            db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection("padres").document(miembro.getTipo())
                     .set(nuevoMiembro)
                     .addOnSuccessListener(aVoid -> Log.d(TAG, "Padre añadido"))
                     .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
@@ -87,7 +90,7 @@ public class ManejadorBD {
 
         miembro = arbol.getTu();
         rellenarMiembro(miembro, nuevoMiembro);
-        db.collection("users").document(userEmail).collection("tree").document(nombreArbol).collection("usuario").document(miembro.getTipo())
+        db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection("usuario").document(miembro.getTipo())
                 .set(nuevoMiembro)
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario añadido al arbol"))
                 .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el usuario en el arbol", e));
@@ -103,29 +106,6 @@ public class ManejadorBD {
 
     }
 
-    public boolean existeArbol(String userEmail, String tipoArbol) {
-        final boolean[] comprobador = {true};
-        DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol);
-
-        try {
-            docRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (!document.exists()) {
-                        Log.d(TAG, "No such document");
-                        comprobador[0] =false;
-                    }
-
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return comprobador[0];
-    }
     /*public void anadirMiembro(String email, String nombreArbol, @NonNull Miembro miembro) {
         Map<String, Object> nuevoMiembro = new HashMap<>();
         nuevoMiembro.put("nombre", miembro.getNombre());

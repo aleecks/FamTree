@@ -39,9 +39,9 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
     private TextView lblTitulo;
     private Button btnFechaN1, btnFechaN2, btnFechaD1, btnFechaD2, btnSiguiente;
 
-    private Intent iSalir, iSeguir;
+    private Intent iSeguir;
     private Bundle extras;
-    private String nombreArbol;
+    private String nombreArbol, tipoArbol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         contador = 0;
         extras = getIntent().getExtras();
         nombreArbol = extras.getString("nombreArbol");
+        tipoArbol = extras.getString("tipoArbol");
         urlFoto = "imagenes/fotos_perfil/image:32";
 
         // ----------- CALENDARIO --------
@@ -91,7 +92,6 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         editTexts.add(txtApellido22);
 
         // ----------- INTENTS --------
-        iSalir = new Intent(this, Home.class);
         iSeguir = new Intent(this, SubirArbol.class);
 
         // ----------- LISTENERS --------
@@ -206,7 +206,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         padres.add(miembro2);
 
                         // rellenamos arbol
-                        arbol = new Arbol(nombreArbol, bisabuelos, abuelos, padres);
+                        arbol = new Arbol(tipoArbol, bisabuelos, abuelos, padres);
                         iSeguir.putExtra("arbol", arbol);
                         startActivity(iSeguir);
 
