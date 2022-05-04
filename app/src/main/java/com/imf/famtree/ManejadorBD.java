@@ -39,18 +39,11 @@ public class ManejadorBD {
     }
 
     public void crearArbol(String userEmail, @NonNull Arbol arbol) {
-        String nombreArbol = arbol.getNombreArbol();
         String tipoArbol = arbol.getTipoArbol();
+        String nombreArbol = arbol.getNombreArbol();
         Miembro miembro;
         Map<String, Object> nuevoMiembro = new HashMap<>();
         Map<String, Object> nombreHM = new HashMap<>();
-
-        // guardar nombre del arbol
-        nombreHM.put("nombre_arbol", nombreArbol);
-        db.collection("users").document(userEmail).collection("tree").document(tipoArbol)
-                .set(nombreHM)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "Bisabuelo añadido"))
-                .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
 
         // subir bisabuelos
         for (int i = 0; i < arbol.getBisabuelos().size(); i++) {
@@ -88,12 +81,22 @@ public class ManejadorBD {
 
         }
 
+        // subir miembro principal
         miembro = arbol.getTu();
         rellenarMiembro(miembro, nuevoMiembro);
+        nuevoMiembro.put("descripcion", miembro.getDescripcion());
         db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection("usuario").document(miembro.getTipo())
                 .set(nuevoMiembro)
                 .addOnSuccessListener(aVoid -> Log.d(TAG, "Usuario añadido al arbol"))
                 .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el usuario en el arbol", e));
+
+        // anadir nombre
+        nombreHM.put("nombre_arbol", nombreArbol);
+        db.collection("users").document(userEmail).collection("tree").document(tipoArbol)
+                .set(nombreHM)
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "Nombre arbol añadido"))
+                .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el nombre del arbol", e));
+
     }
 
     private void rellenarMiembro(@NonNull Miembro miembro, @NonNull Map<String, Object> nuevoMiembro) {

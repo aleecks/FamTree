@@ -112,7 +112,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void comprobarArboles() {
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("abuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -129,7 +129,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol2").collection("abuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(user.getEmail()).collection("tree").document("arbol2").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -146,7 +146,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol3").collection("abuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(user.getEmail()).collection("tree").document("arbol3").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -165,18 +165,19 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void mostrarAlert(){
-       AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    private void mostrarAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-       alert.setTitle("Introduce el nombre de tu Árbol");
+        alert.setTitle("Introduce el nombre de tu FamTree");
 
         EditText txtNombreArbol = new EditText(this);
+        txtNombreArbol.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         alert.setView(txtNombreArbol);
 
         alert.setPositiveButton("Continuar", (dialogInterface, i) -> {
             nombreArbol = txtNombreArbol.getText().toString();
 
-            if(nombreArbol.length() > 3) {
+            if (nombreArbol.length() > 3) {
                 iArbol.putExtra("nombreArbol", nombreArbol);
                 iArbol.putExtra("tipoArbol", tipoArbol);
                 startActivity(iArbol);

@@ -206,7 +206,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         padres.add(miembro2);
 
                         // rellenamos arbol
-                        arbol = new Arbol(tipoArbol, bisabuelos, abuelos, padres);
+                        arbol = new Arbol(tipoArbol, nombreArbol, bisabuelos, abuelos, padres);
                         iSeguir.putExtra("arbol", arbol);
                         startActivity(iSeguir);
 

@@ -102,7 +102,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
                 if (txtNombre.getText().toString().isEmpty() || txtApellido1.getText().toString().isEmpty() || txtApellido2.getText().toString().isEmpty() || txtDescripcion.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
 
-                    // comprobar si las fechas estan vacias
+                // comprobar si las fechas estan vacias
                 } else if (fecha.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Debes rellenar la fechas de nacimineto", Toast.LENGTH_SHORT).show();
 
