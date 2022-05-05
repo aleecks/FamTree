@@ -154,13 +154,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-
+    // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
     // ------- SUBIR FOTOGRAFIA --------
     private void fileUpload() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         startActivityForResult(intent, File);
-        // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -8,6 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.beans.Arbol;
@@ -107,6 +108,68 @@ public class ManejadorBD {
         nuevoMiembro.put("fecha_defuncion", miembro.getFechaDefuncion());
         nuevoMiembro.put("url_foto", miembro.getUrlFoto());
 
+    }
+
+    public Arbol obtenerArbol(String tipoArbol, String userEmail) {
+        Arbol arbol = new Arbol();
+        Miembro miembro;
+
+        try {
+            // añadir bisabuelos
+            for(int i = 0; i < 8; i++){
+                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+                arbol.getBisabuelos().add(miembro);
+
+            }
+
+            // añadir abuelos
+            for(int i = 0; i < 4; i++){
+                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+                arbol.getAbuelos().add(miembro);
+
+            }
+
+            // añadir padres
+            for(int i = 0; i < 2; i++){
+                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+                arbol.getPadres().add(miembro);
+            }
+
+            // añadir miembro princiapal
+            miembro = obtenerMiembro(tipoArbol, userEmail, "usuario", "0.1");
+            arbol.setTu(miembro);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arbol;
+    }
+
+    @NonNull
+    private Miembro obtenerMiembro(String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
+        Miembro miembro = new Miembro();
+        Map<String, Object> miembroObtenido = new HashMap<>();
+
+        try {
+
+            DocumentReference docRef =  db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro);
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                Miembro miembro1 = documentSnapshot.toObject(Miembro.class);
+            });
+
+            /*miembroObtenido = db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro)
+                     .get().getResult()
+                     .getData();
+
+             miembro.setTipo(numeroMiembro);
+             miembro.setNombre(miembroObtenido.get("nombre").toString());*/
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return miembro;
     }
 
     /*public void anadirMiembro(String email, String nombreArbol, @NonNull Miembro miembro) {
