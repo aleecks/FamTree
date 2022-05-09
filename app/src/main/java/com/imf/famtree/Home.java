@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.inicio.Inicio;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
@@ -33,9 +34,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     private Intent iInicio, iArbol, iMostrarArbol;
     private FirebaseUser user;
-
     private FirebaseFirestore db;
 
+    private ManejadorBD bd;
+    private Arbol arbol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
+        bd = new ManejadorBD();
 
         iInicio = new Intent(this, Inicio.class);
         iArbol = new Intent(this, CrearMiembro.class);
@@ -88,6 +91,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     tipoArbol = "arbol1";
                     mostrarAlert();
                 } else {
+                    arbol = bd.obtenerArbol("arbol1", user.getEmail());
+                    iMostrarArbol.putExtra("arbol", arbol);
                     startActivity(iMostrarArbol);
                 }
                 break;
@@ -97,6 +102,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     tipoArbol = "arbol2";
                     mostrarAlert();
                 } else {
+                    arbol = bd.obtenerArbol("arbol2", user.getEmail());
+                    iMostrarArbol.putExtra("arbol", arbol);
                     startActivity(iMostrarArbol);
                 }
                 break;
@@ -106,6 +113,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     tipoArbol = "arbol3";
                     mostrarAlert();
                 } else {
+                    arbol = bd.obtenerArbol("arbol2", user.getEmail());
+                    iMostrarArbol.putExtra("arbol", arbol);
                     startActivity(iMostrarArbol);
                 }
         }
@@ -120,6 +129,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     isArbol1 = true;
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol1.setTextColor(Color.rgb(200, 100, 220));
+
                 } else {
                     Log.d(TAG, "arbol1 no existe");
                     isArbol1 = false;

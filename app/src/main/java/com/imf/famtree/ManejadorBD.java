@@ -14,7 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ManejadorBD {
@@ -113,25 +116,28 @@ public class ManejadorBD {
     public Arbol obtenerArbol(String tipoArbol, String userEmail) {
         Arbol arbol = new Arbol();
         Miembro miembro;
+        List<String> numeroMiembro = Arrays.asList("0.1", "0.2", "1.1", "1.2", "2.1", "2.2", "3.1", "3.2");
 
         try {
             // añadir bisabuelos
-            for(int i = 0; i < 8; i++){
-                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+            for (int i = 0; i < 8; i++) {
+                miembro = obtenerMiembro(tipoArbol, userEmail, "bisabuelos", numeroMiembro.get(i));
                 arbol.getBisabuelos().add(miembro);
 
             }
 
             // añadir abuelos
-            for(int i = 0; i < 4; i++){
-                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+            numeroMiembro = Arrays.asList("4.1", "4.2", "5.1", "5.2");
+            for (int i = 0; i < 4; i++) {
+                miembro = obtenerMiembro(tipoArbol, userEmail, "abuelos", numeroMiembro.get(i));
                 arbol.getAbuelos().add(miembro);
 
             }
 
             // añadir padres
-            for(int i = 0; i < 2; i++){
-                miembro = obtenerMiembro(tipoArbol, userEmail, Validaciones.devolverTipoMiembro1(i), "0.1");
+            for (int i = 0; i < 2; i++) {
+                numeroMiembro = Arrays.asList("6.1", "6.2");
+                miembro = obtenerMiembro(tipoArbol, userEmail, "padres", numeroMiembro.get(i));
                 arbol.getPadres().add(miembro);
             }
 
@@ -153,18 +159,22 @@ public class ManejadorBD {
 
         try {
 
-            DocumentReference docRef =  db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro);
+            /*DocumentReference docRef =  db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro);
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 Miembro miembro1 = documentSnapshot.toObject(Miembro.class);
-            });
+            });*/
 
-            /*miembroObtenido = db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro)
-                     .get().getResult()
-                     .getData();
+            miembroObtenido = db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro)
+                    .get().getResult()
+                    .getData();
 
-             miembro.setTipo(numeroMiembro);
-             miembro.setNombre(miembroObtenido.get("nombre").toString());*/
-
+            miembro.setTipo(numeroMiembro);
+            miembro.setNombre(miembroObtenido.get("nombre").toString());
+            miembro.setApellido1(miembroObtenido.get("apellido_1").toString());
+            miembro.setApellido2(miembroObtenido.get("apellido_2").toString());
+            miembro.setFechaNacimiento(miembroObtenido.get("fecha_nacimiento").toString());
+            miembro.setFechaDefuncion(miembroObtenido.get("fecha_defuncion").toString());
+            miembro.setUrlFoto(miembroObtenido.get("url_foto").toString());
 
         } catch (Exception e) {
             e.printStackTrace();
