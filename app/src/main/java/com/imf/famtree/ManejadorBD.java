@@ -8,13 +8,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -155,7 +153,7 @@ public class ManejadorBD {
     @NonNull
     private Miembro obtenerMiembro(String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
         Miembro miembro = new Miembro();
-        Map<String, Object> miembroObtenido = new HashMap<>();
+        Map<String, Object> miembroObtenido;
 
         try {
 
@@ -176,54 +174,15 @@ public class ManejadorBD {
             miembro.setFechaDefuncion(miembroObtenido.get("fecha_defuncion").toString());
             miembro.setUrlFoto(miembroObtenido.get("url_foto").toString());
 
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            Log.d(TAG, "No se encontro miembro");
+            e.printStackTrace();
+
+        }catch (Exception e) {
             e.printStackTrace();
         }
         return miembro;
     }
-
-    /*public void anadirMiembro(String email, String nombreArbol, @NonNull Miembro miembro) {
-        Map<String, Object> nuevoMiembro = new HashMap<>();
-        nuevoMiembro.put("nombre", miembro.getNombre());
-        nuevoMiembro.put("apellido_1", miembro.getApellido1());
-        nuevoMiembro.put("apellido_2", miembro.getApellido2());
-        nuevoMiembro.put("fecha_nacimiento", miembro.getFechaNacimiento());
-        nuevoMiembro.put("fecha_defuncion", miembro.getFechaDefuncion());
-        nuevoMiembro.put("url_foto", miembro.getUrlFoto());
-
-        if (Double.parseDouble(miembro.getTipo()) < 4) {
-            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("bisabuelos").document(miembro.getTipo())
-                    .set(nuevoMiembro)
-                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo bisabuelo añadido"))
-                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el bisabuelo", e));
-
-        } else if (Double.parseDouble(miembro.getTipo()) < 6) {
-            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("abuelos").document(miembro.getTipo())
-                    .set(nuevoMiembro)
-                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo abuelo añadido"))
-                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el abuelo", e));
-        } else {
-            db.collection("users").document(email).collection("tree").document(nombreArbol).collection("padres").document(miembro.getTipo())
-                    .set(nuevoMiembro)
-                    .addOnSuccessListener(aVoid -> Log.d(TAG, "Nuevo padre añadido"))
-                    .addOnFailureListener(e -> Log.w(TAG, "No se pudo guardar el padre", e));
-        }
-
-    }
-
-    public void subirFoto() {
-        StorageReference storageRef = storage.getReference();
-
-        Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-        StorageReference riversRef = storageRef.child("images/" + file.getLastPathSegment());
-
-        UploadTask uploadTask = riversRef.putFile(file);
-        // Register observers to listen for when the download is done or if it fails
-        uploadTask.addOnFailureListener(error -> Log.w(TAG, "No se pudo guardar el abuelo", error))
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "La imagen se ha subido correctamente"));
-
-    }*/
-
 
 }
 
