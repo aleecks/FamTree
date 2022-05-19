@@ -5,40 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Home">
+    tools:context=".MostrarPerfil">
 
     <Button
-        android:id="@+id/btnArbol1"
-        android:layout_width="261dp"
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="Nuevo Árbol" />
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="40dp"
 
+        android:text="Cerrar Sesión" />
 
-    <Button
-        android:id="@+id/btnArbol2"
-        android:layout_width="261dp"
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="Nombre"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/lblCorreo"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Nuevo Árbol" />
+        android:gravity="center"
+        android:text="Correo"
+        android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/btnArbol3"
-        android:layout_width="261dp"
+    <TextView
+        android:id="@+id/lblUID"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Nuevo Árbol" />
-
-
+        android:gravity="center"
+        android:text="Id"
+        android:textSize="20dp" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="270dp">
 
         <Button
             android:id="@+id/btnVolver"
@@ -47,7 +60,7 @@
             android:text="Home" />
 
         <Button
-            android:id="@+id/btnPerfil"
+            android:id="@+id/btnEditar"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="Perfil" />

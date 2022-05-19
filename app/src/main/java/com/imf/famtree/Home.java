@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
-import com.imf.famtree.inicio.Inicio;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,10 +34,9 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     private boolean isArbol1, isArbol2, isArbol3, comprobador;
 
-    private TextView lblNombre, lblCorreo, lblId;
-    private Button btnLogOut, btnCrearArbol1, btnCrearArbol2, btnCrearArbol3;
+    private Button btnVolver, btnCrearArbol1, btnCrearArbol2, btnCrearArbol3;
 
-    private Intent iInicio, iArbol, iMostrarArbol;
+    private Intent iPerfil, iArbol, iMostrarArbol;
     private FirebaseUser user;
     private FirebaseFirestore db;
 
@@ -53,28 +50,22 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_home);
 
-        btnLogOut = findViewById(R.id.btnLogOut);
         btnCrearArbol1 = findViewById(R.id.btnArbol1);
         btnCrearArbol2 = findViewById(R.id.btnArbol2);
         btnCrearArbol3 = findViewById(R.id.btnArbol3);
-        lblNombre = findViewById(R.id.lblNombre);
-        lblCorreo = findViewById(R.id.lblCorreo);
-        lblId = findViewById(R.id.lblUID);
+        btnVolver = findViewById(R.id.btnPerfil);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
         bd = new ManejadorBD();
 
-        iInicio = new Intent(this, Inicio.class);
+        iPerfil = new Intent(this, MostrarPerfil.class);
         iArbol = new Intent(this, CrearMiembro.class);
         iMostrarArbol = new Intent(this, MostrarArbol.class);
 
-        lblNombre.setText(user.getDisplayName());
-        lblCorreo.setText(user.getEmail());
-        lblId.setText(user.getUid());
-
         // -------------- LISTENERS --------
-        btnLogOut.setOnClickListener(this);
+        btnVolver.setOnClickListener(this);
         btnCrearArbol1.setOnClickListener(this);
         btnCrearArbol2.setOnClickListener(this);
         btnCrearArbol3.setOnClickListener(this);
@@ -90,9 +81,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(@NonNull View view) {
         switch (view.getId()) {
-            case R.id.btnLogOut:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(iInicio);
+            case R.id.btnPerfil:
+                startActivity(iPerfil);
                 break;
 
             case R.id.btnArbol1:

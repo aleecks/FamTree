@@ -3,14 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2245" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout-land/vista_arbol.xml" value="0.2838541666666667" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/activity_subir_arbol.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_arbol.xml" value="0.3458333333333333" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_crear_miembro.xml" value="0.33" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_editar_miembro.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_inicio.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_mostrar_miembro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_perfil.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_registro.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_subir_arbol.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/menu/overflow.xml" value="0.36666666666666664" />
