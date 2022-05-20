@@ -13,6 +13,10 @@ public class Arbol implements Serializable {
     private Miembro tu;
 
     public Arbol() {
+        this.bisabuelos = new ArrayList<>();
+        this.abuelos = new ArrayList<>();
+        this.padres = new ArrayList<>();
+        this.tu = new Miembro();
     }
 
     public Arbol(String tipoArbol, String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {

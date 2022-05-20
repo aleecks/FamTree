@@ -45,19 +45,6 @@ public class Miembro implements Serializable {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "Miembro{" +
-                "tipo='" + tipo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido1='" + apellido1 + '\'' +
-                ", getApellido2='" + Apellido2 + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", fechaDefuncion='" + fechaDefuncion + '\'' +
-                ", foto='" + urlFoto + '\'' +
-                '}';
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -120,5 +107,19 @@ public class Miembro implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Miembro{" +
+                "tipo='" + tipo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido1='" + apellido1 + '\'' +
+                ", Apellido2='" + Apellido2 + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", fechaDefuncion='" + fechaDefuncion + '\'' +
+                ", urlFoto='" + urlFoto + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }

@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -28,12 +29,15 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
     private Button btnVolver, btnEliminar;
 
+    private Button btn01,btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnTu;
+
     private Intent iVolver;
     private boolean comprobador;
     private FirebaseUser user;
     private FirebaseFirestore db;
 
     private Arbol arbol;
+    //private ArrayList<Miembro> bisabuelos, abuelos, padres;
     private Miembro miembro;
     private Map<String, Object> miembroObtenido;
 
@@ -46,7 +50,10 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         btnVolver = findViewById(R.id.btnVolver);
         btnEliminar = findViewById(R.id.btnEliminar);
 
+
         iVolver = new Intent(this, Home.class);
+
+        arbol = new Arbol();
         miembro = new Miembro();
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
@@ -60,7 +67,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(@NonNull View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnVolver:
                 startActivity(iVolver);
         }
@@ -74,40 +81,23 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
             // añadir bisabuelos
             List<String> numeroMiembro = Arrays.asList("0.1", "0.2", "1.1", "1.2", "2.1", "2.2", "3.1", "3.2");
             for (int i = 0; i < 8; i++) {
-                if (rellenarMiembro(tipoArbol, userEmail, "bisabuelos", numeroMiembro.get(i))) {
-                    arbol.getBisabuelos().add(miembro);
-                    Log.d(TAG, "miembro " + numeroMiembro.get(i) + ":" + miembro);
-                } else {
-                    Log.e(TAG, "miembro " + numeroMiembro.get(i) + ": no se ha encontrado");
-                }
+                rellenarMiembro(tipoArbol, userEmail, "bisabuelos", numeroMiembro.get(i));
             }
 
             // añadir abuelos
             List<String> numeroMiembro1 = Arrays.asList("4.1", "4.2", "5.1", "5.2");
             for (int i = 0; i < 4; i++) {
-                if (rellenarMiembro(tipoArbol, userEmail, "abuelos", numeroMiembro1.get(i))) {
-                    arbol.getAbuelos().add(miembro);
-                    Log.d(TAG, "miembro " + numeroMiembro1.get(i) + ":" + miembro);
-                } else {
-                    Log.e(TAG, "miembro " + numeroMiembro1.get(i) + ": no se ha encontrado");
-                }
+                rellenarMiembro(tipoArbol, userEmail, "abuelos", numeroMiembro1.get(i));
             }
 
             // añadir padres
             List<String> numeroMiembro2 = Arrays.asList("6.1", "6.2");
             for (int i = 0; i < 2; i++) {
-                if (rellenarMiembro(tipoArbol, userEmail, "padres", numeroMiembro2.get(i))) {
-                    arbol.getPadres().add(miembro);
-                    Log.d(TAG, "miembro " + numeroMiembro2.get(i) + ":" + miembro);
-                } else {
-                    Log.e(TAG, "miembro " + numeroMiembro2.get(i) + ": no se ha encontrado");
-                }
+                rellenarMiembro(tipoArbol, userEmail, "padres", numeroMiembro2.get(i));
             }
 
             // añadir miembro princiapal
-            if (rellenarMiembro(tipoArbol, userEmail, "usuario", "usuario")) {
-                arbol.setTu(miembro);
-            }
+            rellenarMiembro(tipoArbol, userEmail, "usuario", "usuario");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,25 +105,10 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         return arbol;
     }
 
-    private boolean rellenarMiembro(String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
+    private void rellenarMiembro(String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
         DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro);
 
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    Log.d(TAG, "Miembro: " + document.getData());
-                    comprobador = true;
-                } else {
-                    Log.e(TAG, "No such document");
-                    comprobador = false;
-                }
-            } else {
-                Log.d(TAG, "get failed with ", task.getException());
-            }
-        });
-
-        /*try {
+        try {
             docRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
@@ -148,21 +123,34 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                         miembro.setFechaDefuncion(miembroObtenido.get("fecha_defuncion").toString());
                         miembro.setUrlFoto(miembroObtenido.get("url_foto").toString());
 
+                        switch (tipoMiembro) {
+                            case "bisabuelos":
+                                arbol.getBisabuelos().add(miembro);
+                                break;
+
+                            case "abuelos":
+                                arbol.getAbuelos().add(miembro);
+                                break;
+
+                            case "padres":
+                                arbol.getPadres().add(miembro);
+                                break;
+
+                            default:
+                                arbol.setTu(miembro);
+                        }
+
                     } else {
-                        Log.d(TAG, "No such document");
-                        comprobador = false;
+                        Log.e(TAG, "No such document");
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                    comprobador = false;
+                    Log.e(TAG, "get failed with ", task.getException());
                 }
             });
+
         } catch (Exception e) {
             e.printStackTrace();
-            comprobador = false;
-        }*/
-
-        return comprobador;
+        }
     }
 
 }
