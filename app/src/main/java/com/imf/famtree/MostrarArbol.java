@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -28,16 +28,13 @@ import java.util.Map;
 public class MostrarArbol extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnVolver, btnEliminar;
-
-    private Button btn01,btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnTu;
+    private Button btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
 
     private Intent iVolver;
-    private boolean comprobador;
     private FirebaseUser user;
     private FirebaseFirestore db;
 
     private Arbol arbol;
-    //private ArrayList<Miembro> bisabuelos, abuelos, padres;
     private Miembro miembro;
     private Map<String, Object> miembroObtenido;
 
@@ -49,7 +46,21 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
         btnVolver = findViewById(R.id.btnVolver);
         btnEliminar = findViewById(R.id.btnEliminar);
-
+        btn01 = findViewById(R.id.btn01);
+        btn02 = findViewById(R.id.btn02);
+        btn11 = findViewById(R.id.btn11);
+        btn12 = findViewById(R.id.btn12);
+        btn21 = findViewById(R.id.btn21);
+        btn22 = findViewById(R.id.btn22);
+        btn31 = findViewById(R.id.btn31);
+        btn32 = findViewById(R.id.btn32);
+        btn41 = findViewById(R.id.btn41);
+        btn42 = findViewById(R.id.btn42);
+        btn51 = findViewById(R.id.btn51);
+        btn52 = findViewById(R.id.btn52);
+        btn61 = findViewById(R.id.btn61);
+        btn62 = findViewById(R.id.btn62);
+        btnUsuario = findViewById(R.id.btnUsuario);
 
         iVolver = new Intent(this, Home.class);
 
@@ -58,10 +69,25 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        arbol = obtenerArbol("arbol2", user.getEmail());
+        arbol = obtenerArbol(getIntent().getStringExtra("tipo_arbol"), user.getEmail());
 
         // -------------- LISTENERS --------
         btnVolver.setOnClickListener(this);
+        btn01.setOnClickListener(this);
+        btn02.setOnClickListener(this);
+        btn11.setOnClickListener(this);
+        btn12.setOnClickListener(this);
+        btn21.setOnClickListener(this);
+        btn22.setOnClickListener(this);
+        btn31.setOnClickListener(this);
+        btn32.setOnClickListener(this);
+        btn41.setOnClickListener(this);
+        btn42.setOnClickListener(this);
+        btn51.setOnClickListener(this);
+        btn52.setOnClickListener(this);
+        btn61.setOnClickListener(this);
+        btn62.setOnClickListener(this);
+        btnUsuario.setOnClickListener(this);
 
     }
 
@@ -70,6 +96,70 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnVolver:
                 startActivity(iVolver);
+                break;
+
+            case R.id.btnEliminar:
+                Toast.makeText(this.getApplicationContext(), arbol.toString(), Toast.LENGTH_LONG);
+                break;
+
+            case R.id.btn01:
+
+                break;
+
+            case R.id.btn02:
+
+                break;
+
+            case R.id.btn11:
+
+                break;
+
+            case R.id.btn12:
+
+                break;
+
+            case R.id.btn21:
+
+                break;
+            case R.id.btn22:
+
+                break;
+
+            case R.id.btn31:
+
+                break;
+
+            case R.id.btn32:
+
+                break;
+
+            case R.id.btn41:
+
+                break;
+
+            case R.id.btn42:
+
+                break;
+
+            case R.id.btn51:
+
+                break;
+
+            case R.id.btn52:
+
+                break;
+
+            case R.id.btn61:
+
+                break;
+
+            case R.id.btn62:
+
+                break;
+
+            case R.id.btnUsuario:
+
+
         }
     }
 
@@ -113,7 +203,6 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        comprobador = true;
                         miembroObtenido = document.getData();
                         miembro.setTipo(numeroMiembro);
                         miembro.setNombre(miembroObtenido.get("nombre").toString());
@@ -134,6 +223,8 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
                             case "padres":
                                 arbol.getPadres().add(miembro);
+                                Log.d(TAG, "TERMINDO");
+                                Log.d(TAG, arbol.toString());
                                 break;
 
                             default:

@@ -1,5 +1,7 @@
 package com.imf.famtree.beans;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -27,25 +29,11 @@ public class Arbol implements Serializable {
         this.padres = padres;
     }
 
-    public Arbol(String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres) {
-        this.nombreArbol = nombreArbol;
-        this.bisabuelos = bisabuelos;
-        this.abuelos = abuelos;
-        this.padres = padres;
-    }
-
-    public Arbol(String nombreArbol, ArrayList<Miembro> bisabuelos, ArrayList<Miembro> abuelos, ArrayList<Miembro> padres, Miembro tu) {
-        this.nombreArbol = nombreArbol;
-        this.bisabuelos = bisabuelos;
-        this.abuelos = abuelos;
-        this.padres = padres;
-        this.tu = tu;
-    }
-
     @Override
     public String toString() {
         return "Arbol{" +
-                "nombreArbol='" + nombreArbol + '\'' +
+                "tipoArbol='" + tipoArbol + '\'' +
+                ", nombreArbol='" + nombreArbol + '\'' +
                 ", bisabuelos=" + bisabuelos +
                 ", abuelos=" + abuelos +
                 ", padres=" + padres +

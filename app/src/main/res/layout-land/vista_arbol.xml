@@ -13,7 +13,7 @@
         android:layout_marginTop="25dp">
 
         <Button
-            android:id="@+id/img0.1"
+            android:id="@+id/btn01"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="15dp"
@@ -21,14 +21,14 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img0.2"
+            android:id="@+id/btn02"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img1.1"
+            android:id="@+id/btn11"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="30dp"
@@ -36,14 +36,14 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img1.2"
+            android:id="@+id/btn12"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img2.1"
+            android:id="@+id/btn21"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="75dp"
@@ -51,14 +51,14 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img2.2"
+            android:id="@+id/btn22"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img3.1"
+            android:id="@+id/btn31"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="30dp"
@@ -66,7 +66,7 @@
             tools:ignore="SpeakableTextPresentCheck"/>
 
         <Button
-            android:id="@+id/img3.2"
+            android:id="@+id/btn32"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
@@ -80,7 +80,7 @@
         android:layout_marginLeft="-600dp">
 
         <Button
-            android:id="@+id/img4.1"
+            android:id="@+id/btn41"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
@@ -88,7 +88,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img4.2"
+            android:id="@+id/btn42"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
@@ -96,7 +96,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img5.1"
+            android:id="@+id/btn51"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="195dp"
@@ -104,7 +104,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
-            android:id="@+id/img5.2"
+            android:id="@+id/btn52"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
@@ -113,7 +113,7 @@
     </androidx.gridlayout.widget.GridLayout>
 
     <Button
-        android:id="@+id/img6.1"
+        android:id="@+id/btn61"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="-485dp"
@@ -122,7 +122,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/img6.2"
+        android:id="@+id/btn62"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="285dp"
@@ -131,7 +131,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/imgUsuario"
+        android:id="@+id/btnUsuario"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginLeft="-270dp"
