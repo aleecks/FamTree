@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,12 +29,13 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
     private Button btnVolver, btnEliminar;
     private Button btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
 
-    private Intent iVolver;
+    private Intent iVolver, iMostrar;
     private FirebaseUser user;
     private FirebaseFirestore db;
 
     private Arbol arbol;
     private Map<String, Object> miembroObtenido;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +62,11 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         btnUsuario = findViewById(R.id.btnUsuario);
 
         iVolver = new Intent(this, Home.class);
+        iMostrar = new Intent(this, MostrarMiembro.class);
 
         arbol = new Arbol();
+        arbol.setTipoArbol(getIntent().getStringExtra("tipo_arbol"));
+        arbol.setNombreArbol(getIntent().getStringExtra("nombre_arbol"));
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
@@ -97,68 +100,148 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnEliminar:
-                Toast.makeText(this.getApplicationContext(), arbol.toString(), Toast.LENGTH_LONG);
                 break;
 
             case R.id.btn01:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "0.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn02:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "0.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn11:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "1.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn12:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "1.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn21:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "2.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
-            case R.id.btn22:
 
+            case R.id.btn22:
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "2.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn31:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "3.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn32:
-
+                iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "3.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn41:
-
+                iMostrar.putExtra("miembro", devolverMiembro("abuelos", "4.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn42:
-
+                iMostrar.putExtra("miembro", devolverMiembro("abuelos", "4.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn51:
-
+                iMostrar.putExtra("miembro", devolverMiembro("abuelos", "5.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn52:
-
+                iMostrar.putExtra("miembro", devolverMiembro("abuelos", "5.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn61:
-
+                iMostrar.putExtra("miembro", devolverMiembro("padres", "6.1"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
                 break;
 
             case R.id.btn62:
+                iMostrar.putExtra("miembro", devolverMiembro("padres", "6.2"));
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
 
                 break;
 
             case R.id.btnUsuario:
-
+                iMostrar.putExtra("miembro", arbol.getTu());
+                iMostrar.putExtra("arbol", arbol);
+                startActivity(iMostrar);
 
         }
+    }
+
+
+    private Miembro devolverMiembro(String tipoMiembro, String numeroMimebro) {
+        Miembro miembroDevolver = new Miembro();
+        Boolean encontrado = false;
+        int i = 0;
+
+        try {
+            switch (tipoMiembro) {
+                case "bisabuelos":
+                    while (!encontrado && i < 8) {
+                        if (arbol.getBisabuelos().get(i).getTipo().equals(numeroMimebro)) {
+                            encontrado = true;
+                            miembroDevolver = arbol.getBisabuelos().get(i);
+                        } else {
+                            i++;
+                        }
+                    }
+                    break;
+
+                case "abuelos":
+                    while (!encontrado && i < 4) {
+                        if (arbol.getAbuelos().get(i).getTipo().equals(numeroMimebro)) {
+                            encontrado = true;
+                            miembroDevolver = arbol.getAbuelos().get(i);
+                        } else {
+                            i++;
+                        }
+                    }
+                    break;
+
+                case "padres":
+                    while (!encontrado && i < 2) {
+                        if (arbol.getPadres().get(i).getTipo().equals(numeroMimebro)) {
+                            encontrado = true;
+                            miembroDevolver = arbol.getPadres().get(i);
+                        } else {
+                            i++;
+                        }
+                    }
+                    break;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return miembroDevolver;
     }
 
     @NonNull
@@ -225,12 +308,12 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
                             case "padres":
                                 arbol.getPadres().add(miembro);
-                                Log.d(TAG, "TERMINDO");
-                                Log.d(TAG, arbol.toString());
                                 break;
 
                             case "usuario":
                                 arbol.setTu(miembro);
+                                Log.d(TAG, "TERMINDO");
+                                Log.d(TAG, arbol.toString());
 
                         }
 
@@ -241,6 +324,10 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                     Log.e(TAG, "get failed with ", task.getException());
                 }
             });
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            Log.e(TAG, "tipoMiembro: " + tipoMiembro + ", numeroMiembro: " + numeroMiembro + ", useremail: " + userEmail);
 
         } catch (Exception e) {
             e.printStackTrace();

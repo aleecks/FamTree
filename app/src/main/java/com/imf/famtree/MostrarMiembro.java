@@ -20,7 +20,7 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
     private Miembro miembro;
     private Arbol arbol;
 
-    private Intent iVoler, iEditar;
+    private Intent iEditar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,8 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
         btnVolver = findViewById(R.id.btnVolver);
         btnEditar =findViewById(R.id.btnEditar);
 
-        miembro = (Miembro) getIntent().getParcelableExtra("miembro");
+        miembro = (Miembro) getIntent().getSerializableExtra("miembro");
         arbol = (Arbol) getIntent().getSerializableExtra("arbol");
-        iVoler = new Intent(this, MostrarArbol.class);
         iEditar = new Intent(this, EditarMiembro.class);
 
         // ------- RELLENAR LABELS -------
@@ -56,7 +55,7 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
     public void onClick(@NonNull View view) {
         switch (view.getId()){
             case R.id.btnVolver:
-                startActivity(iVoler);
+                onBackPressed();
                 break;
 
             case R.id.btnEditar:

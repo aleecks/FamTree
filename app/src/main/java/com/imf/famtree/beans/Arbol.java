@@ -34,9 +34,9 @@ public class Arbol implements Serializable {
         return "Arbol{" +
                 "tipoArbol='" + tipoArbol + '\'' +
                 ", nombreArbol='" + nombreArbol + '\'' +
-                ", bisabuelos=" + bisabuelos +
-                ", abuelos=" + abuelos +
-                ", padres=" + padres +
+                ", bisabuelos=" + bisabuelos.size() +
+                ", abuelos=" + abuelos.size() +
+                ", padres=" + padres.size() +
                 ", tu=" + tu +
                 '}';
     }

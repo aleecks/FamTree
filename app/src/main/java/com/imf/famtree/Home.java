@@ -17,12 +17,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
-    private String tipoArbol, nombreArbol;
+    private String tipoArbol, nombreArbol, userEmail;
 
     private boolean isArbol1, isArbol2, isArbol3;
 
@@ -48,6 +49,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         iPerfil = new Intent(this, MostrarPerfil.class);
         iArbol = new Intent(this, CrearMiembro.class);
         iMostrarArbol = new Intent(this, MostrarArbol.class);
+
+        userEmail = user.getEmail();
 
         // -------------- LISTENERS --------
         btnVolver.setOnClickListener(this);
@@ -76,6 +79,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     mostrarAlert();
                 } else {
                     iMostrarArbol.putExtra("tipo_arbol", "arbol1");
+                    iMostrarArbol.putExtra("nombre_arbol", nombreArbol);
                     startActivity(iMostrarArbol);
                 }
                 break;
@@ -86,6 +90,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     mostrarAlert();
                 } else {
                     iMostrarArbol.putExtra("tipo_arbol", "arbol2");
+                    iMostrarArbol.putExtra("nombre_arbol", nombreArbol);
                     startActivity(iMostrarArbol);
                 }
                 break;
@@ -96,6 +101,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     mostrarAlert();
                 } else {
                     iMostrarArbol.putExtra("tipo_arbol", "arbol3");
+                    iMostrarArbol.putExtra("nombre_arbol", nombreArbol);
                     startActivity(iMostrarArbol);
                 }
 
@@ -105,7 +111,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     // ----------------------------- COMPROVACIONES Y UTILIDADES -------------------------
     private void comprobarArboles() {
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol1").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(userEmail).collection("tree").document("arbol1").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -113,6 +119,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     isArbol1 = true;
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol1.setTextColor(Color.rgb(200, 100, 220));
+                    setNombreArbol(userEmail, "arbol1");
 
                 } else {
                     Log.d(TAG, "arbol1 no existe");
@@ -123,7 +130,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol2").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(userEmail).collection("tree").document("arbol2").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -131,6 +138,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     isArbol2 = true;
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol2.setTextColor(Color.rgb(200, 100, 220));
+                    setNombreArbol(userEmail, "arbol2");
+
                 } else {
                     Log.d(TAG, "arbol2 no existe");
                     isArbol2 = false;
@@ -140,7 +149,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        db.collection("users").document(user.getEmail()).collection("tree").document("arbol3").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(userEmail).collection("tree").document("arbol3").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -148,6 +157,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     isArbol3 = true;
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol3.setTextColor(Color.rgb(200, 100, 220));
+                    setNombreArbol(userEmail, "arbol3");
+
                 } else {
                     Log.d(TAG, "arbol3 no existe");
                     isArbol3 = false;
@@ -187,6 +198,40 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
         alert.show();
 
+    }
+
+    private void setNombreArbol(String userEmail, String tipoArbol){
+        DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol);
+
+        try {
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        nombreArbol = document.getString("nombre_arbol");
+                        switch (tipoArbol) {
+                            case "arbol1":
+                                btnCrearArbol1.setText(nombreArbol);
+                                break;
+
+                            case "arbol2":
+                                btnCrearArbol2.setText(nombreArbol);
+                                break;
+
+                            case "arbol3":
+                                btnCrearArbol3.setText(nombreArbol);
+                        }
+
+                    } else {
+                        Log.e(TAG, "No such document");
+                    }
+                } else {
+                    Log.e(TAG, "get failed with ", task.getException());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

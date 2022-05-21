@@ -17,7 +17,7 @@
             android:id="@+id/btnVolver"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Vovler" />
+            android:text="Volver" />
 
         <Button
             android:id="@+id/btnEditar"

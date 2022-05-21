@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
@@ -70,6 +69,7 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnVolver:
+                onBackPressed();
                 break;
 
             case R.id.btnSubir:
