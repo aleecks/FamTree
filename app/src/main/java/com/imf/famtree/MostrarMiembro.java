@@ -1,5 +1,6 @@
 package com.imf.famtree;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,15 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.imf.famtree.beans.Arbol;
+import com.imf.famtree.beans.Miembro;
+
 public class MostrarMiembro extends AppCompatActivity implements View.OnClickListener {
 
     private TextView lblNombre, lblApellido1, lblApellido2, lblFecha1, lblFecha2;
-
     private Button btnVolver, btnEditar;
 
-    private Intent iVoler, iEditar;
+    private Miembro miembro;
+    private Arbol arbol;
 
-    private Bundle extras;
+    private Intent iVoler, iEditar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,20 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
         lblApellido2 = findViewById(R.id.lblApellido2);
         lblFecha1 = findViewById(R.id.lblFechaNacimiento);
         lblFecha2 = findViewById(R.id.lblFechaDefuncion);
+        btnVolver = findViewById(R.id.btnVolver);
+        btnEditar =findViewById(R.id.btnEditar);
 
+        miembro = (Miembro) getIntent().getParcelableExtra("miembro");
+        arbol = (Arbol) getIntent().getSerializableExtra("arbol");
         iVoler = new Intent(this, MostrarArbol.class);
         iEditar = new Intent(this, EditarMiembro.class);
+
+        // ------- RELLENAR LABELS -------
+        lblNombre.setText(miembro.getNombre());
+        lblApellido1.setText(miembro.getApellido1());
+        lblApellido2.setText(miembro.getApellido2());
+        lblFecha1.setText(miembro.getFechaNacimiento());
+        lblFecha2.setText(miembro.getFechaDefuncion());
 
         // -------------- LISTENERS --------
         btnVolver.setOnClickListener(this);
@@ -38,13 +53,16 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NonNull View view) {
         switch (view.getId()){
             case R.id.btnVolver:
                 startActivity(iVoler);
                 break;
 
             case R.id.btnEditar:
+                iEditar.putExtra("miembro", miembro);
+                iEditar.putExtra("arbol", arbol);
+                startActivity(iEditar);
 
         }
     }

@@ -1,5 +1,7 @@
 package com.imf.famtree.beans;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Miembro implements Serializable {
@@ -13,15 +15,6 @@ public class Miembro implements Serializable {
     private String descripcion;
 
     public Miembro() {
-    }
-
-    public Miembro(String tipo, String nombre, String apellido1, String Apellido2, String fechaNacimiento, String fechaDefuncion) {
-        this.tipo = tipo;
-        this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.Apellido2 = Apellido2;
-        this.fechaNacimiento = fechaNacimiento;
-        this.fechaDefuncion = fechaDefuncion;
     }
 
     public Miembro(String tipo, String nombre, String apellido1, String Apellido2, String fechaNacimiento, String fechaDefuncion, String urlFoto) {
@@ -109,6 +102,7 @@ public class Miembro implements Serializable {
         this.descripcion = descripcion;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Miembro{" +

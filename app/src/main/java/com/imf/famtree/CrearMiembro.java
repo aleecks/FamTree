@@ -65,7 +65,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         // --------- MOSTRAMOS TITULO --------
         lblTitulo.setText("1º/4 Pareja de Bisabuelos");
 
-        //------- INICIAMO VARIABLES --------
+        //------- INICIAMOS VARIABLES --------
         bisabuelos = new ArrayList<>();
         abuelos = new ArrayList<>();
         padres = new ArrayList<>();

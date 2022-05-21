@@ -35,7 +35,6 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
     private FirebaseFirestore db;
 
     private Arbol arbol;
-    private Miembro miembro;
     private Map<String, Object> miembroObtenido;
 
     @Override
@@ -65,7 +64,6 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         iVolver = new Intent(this, Home.class);
 
         arbol = new Arbol();
-        miembro = new Miembro();
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
@@ -165,29 +163,33 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
     @NonNull
     private Arbol obtenerArbol(String tipoArbol, String userEmail) {
-        Arbol arbol = new Arbol();
+        Miembro miembro;
 
         try {
             // añadir bisabuelos
             List<String> numeroMiembro = Arrays.asList("0.1", "0.2", "1.1", "1.2", "2.1", "2.2", "3.1", "3.2");
             for (int i = 0; i < 8; i++) {
-                rellenarMiembro(tipoArbol, userEmail, "bisabuelos", numeroMiembro.get(i));
+                miembro = new Miembro();
+                rellenarMiembro(miembro, tipoArbol, userEmail, "bisabuelos", numeroMiembro.get(i));
             }
 
             // añadir abuelos
             List<String> numeroMiembro1 = Arrays.asList("4.1", "4.2", "5.1", "5.2");
             for (int i = 0; i < 4; i++) {
-                rellenarMiembro(tipoArbol, userEmail, "abuelos", numeroMiembro1.get(i));
+                miembro = new Miembro();
+                rellenarMiembro(miembro, tipoArbol, userEmail, "abuelos", numeroMiembro1.get(i));
             }
 
             // añadir padres
             List<String> numeroMiembro2 = Arrays.asList("6.1", "6.2");
             for (int i = 0; i < 2; i++) {
-                rellenarMiembro(tipoArbol, userEmail, "padres", numeroMiembro2.get(i));
+                miembro = new Miembro();
+                rellenarMiembro(miembro, tipoArbol, userEmail, "padres", numeroMiembro2.get(i));
             }
 
             // añadir miembro princiapal
-            rellenarMiembro(tipoArbol, userEmail, "usuario", "usuario");
+            miembro = new Miembro();
+            rellenarMiembro(miembro, tipoArbol, userEmail, "usuario", "usuario");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +197,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         return arbol;
     }
 
-    private void rellenarMiembro(String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
+    private void rellenarMiembro(Miembro miembro, String tipoArbol, String userEmail, String tipoMiembro, String numeroMiembro) {
         DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol).collection(tipoMiembro).document(numeroMiembro);
 
         try {
@@ -227,8 +229,9 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                                 Log.d(TAG, arbol.toString());
                                 break;
 
-                            default:
+                            case "usuario":
                                 arbol.setTu(miembro);
+
                         }
 
                     } else {
