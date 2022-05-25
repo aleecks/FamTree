@@ -1,19 +1,8 @@
 package com.imf.famtree;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -116,10 +105,6 @@ public class Validaciones {
             } else if (!c1.equals(c2)) {
                 comprobador = false;
             }
-
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            comprobador = false;
 
         } catch (Exception e) {
             e.printStackTrace();

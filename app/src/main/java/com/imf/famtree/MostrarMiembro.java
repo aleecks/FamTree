@@ -18,7 +18,6 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
     private Button btnVolver, btnEditar;
 
     private Miembro miembro;
-    private Arbol arbol;
 
     private Intent iEditar;
 
@@ -36,7 +35,6 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
         btnEditar =findViewById(R.id.btnEditar);
 
         miembro = (Miembro) getIntent().getSerializableExtra("miembro");
-        arbol = (Arbol) getIntent().getSerializableExtra("arbol");
         iEditar = new Intent(this, EditarMiembro.class);
 
         // ------- RELLENAR LABELS -------
@@ -60,7 +58,8 @@ public class MostrarMiembro extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btnEditar:
                 iEditar.putExtra("miembro", miembro);
-                iEditar.putExtra("arbol", arbol);
+                iEditar.putExtra("tipoMiembro", getIntent().getStringExtra("tipoMiembro"));
+                iEditar.putExtra("tipo_arbol", getIntent().getStringExtra("tipo_arbol"));
                 startActivity(iEditar);
 
         }

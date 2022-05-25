@@ -23,6 +23,7 @@ import com.imf.famtree.beans.Miembro;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MostrarArbol extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +36,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
     private Arbol arbol;
     private Map<String, Object> miembroObtenido;
-
+    private String tipoArbol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,19 +62,22 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         btn62 = findViewById(R.id.btn62);
         btnUsuario = findViewById(R.id.btnUsuario);
 
+        tipoArbol = getIntent().getStringExtra("tipo_arbol");
         iVolver = new Intent(this, Home.class);
         iMostrar = new Intent(this, MostrarMiembro.class);
 
-        arbol = new Arbol();
-        arbol.setTipoArbol(getIntent().getStringExtra("tipo_arbol"));
-        arbol.setNombreArbol(getIntent().getStringExtra("nombre_arbol"));
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        arbol = obtenerArbol(getIntent().getStringExtra("tipo_arbol"), user.getEmail());
+        arbol = new Arbol();
+        arbol.setTipoArbol(tipoArbol);
+        arbol.setNombreArbol(getIntent().getStringExtra("nombre_arbol"));
+        iMostrar.putExtra("tipo_arbol", tipoArbol);
+        arbol = obtenerArbol(tipoArbol, user.getEmail());
 
         // -------------- LISTENERS --------
         btnVolver.setOnClickListener(this);
+        btnEliminar.setOnClickListener(this);
         btn01.setOnClickListener(this);
         btn02.setOnClickListener(this);
         btn11.setOnClickListener(this);
@@ -100,96 +104,101 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnEliminar:
+                db.collection("users").document(user.getEmail()).collection("tree").document(tipoArbol)
+                        .delete()
+                        .addOnSuccessListener(aVoid -> Log.d(TAG, "DocumentSnapshot successfully deleted!"))
+                        .addOnFailureListener(e -> Log.e(TAG, "Error deleting document"));
+                startActivity(iVolver);
                 break;
 
             case R.id.btn01:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "0.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn02:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "0.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn11:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "1.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn12:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "1.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn21:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "2.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn22:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "2.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn31:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "3.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn32:
                 iMostrar.putExtra("miembro", devolverMiembro("bisabuelos", "3.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "bisabuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn41:
                 iMostrar.putExtra("miembro", devolverMiembro("abuelos", "4.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "abuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn42:
                 iMostrar.putExtra("miembro", devolverMiembro("abuelos", "4.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "abuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn51:
                 iMostrar.putExtra("miembro", devolverMiembro("abuelos", "5.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "abuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn52:
                 iMostrar.putExtra("miembro", devolverMiembro("abuelos", "5.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "abuelos");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn61:
                 iMostrar.putExtra("miembro", devolverMiembro("padres", "6.1"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "padres");
                 startActivity(iMostrar);
                 break;
 
             case R.id.btn62:
                 iMostrar.putExtra("miembro", devolverMiembro("padres", "6.2"));
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "padres");
                 startActivity(iMostrar);
 
                 break;
 
             case R.id.btnUsuario:
                 iMostrar.putExtra("miembro", arbol.getTu());
-                iMostrar.putExtra("arbol", arbol);
+                iMostrar.putExtra("tipoMiembro", "usuario");
                 startActivity(iMostrar);
 
         }
@@ -198,7 +207,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
 
     private Miembro devolverMiembro(String tipoMiembro, String numeroMimebro) {
         Miembro miembroDevolver = new Miembro();
-        Boolean encontrado = false;
+        boolean encontrado = false;
         int i = 0;
 
         try {
@@ -290,12 +299,12 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                     if (document.exists()) {
                         miembroObtenido = document.getData();
                         miembro.setTipo(numeroMiembro);
-                        miembro.setNombre(miembroObtenido.get("nombre").toString());
-                        miembro.setApellido1(miembroObtenido.get("apellido_1").toString());
-                        miembro.setApellido2(miembroObtenido.get("apellido_2").toString());
-                        miembro.setFechaNacimiento(miembroObtenido.get("fecha_nacimiento").toString());
-                        miembro.setFechaDefuncion(miembroObtenido.get("fecha_defuncion").toString());
-                        miembro.setUrlFoto(miembroObtenido.get("url_foto").toString());
+                        miembro.setNombre(Objects.requireNonNull(miembroObtenido.get("nombre")).toString());
+                        miembro.setApellido1(Objects.requireNonNull(miembroObtenido.get("apellido_1")).toString());
+                        miembro.setApellido2(Objects.requireNonNull(miembroObtenido.get("apellido_2")).toString());
+                        miembro.setFechaNacimiento(Objects.requireNonNull(miembroObtenido.get("fecha_nacimiento")).toString());
+                        miembro.setFechaDefuncion(Objects.requireNonNull(miembroObtenido.get("fecha_defuncion")).toString());
+                        miembro.setUrlFoto(Objects.requireNonNull(miembroObtenido.get("url_foto")).toString());
 
                         switch (tipoMiembro) {
                             case "bisabuelos":

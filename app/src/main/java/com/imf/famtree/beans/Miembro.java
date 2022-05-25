@@ -8,7 +8,7 @@ public class Miembro implements Serializable {
     private String tipo;
     private String nombre;
     private String apellido1;
-    private String Apellido2;
+    private String apellido2;
     private String fechaNacimiento;
     private String fechaDefuncion;
     private String urlFoto;
@@ -17,11 +17,11 @@ public class Miembro implements Serializable {
     public Miembro() {
     }
 
-    public Miembro(String tipo, String nombre, String apellido1, String Apellido2, String fechaNacimiento, String fechaDefuncion, String urlFoto) {
+    public Miembro(String tipo, String nombre, String apellido1, String apellido2, String fechaNacimiento, String fechaDefuncion, String urlFoto) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.apellido1 = apellido1;
-        this.Apellido2 = Apellido2;
+        this.apellido2 = apellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaDefuncion = fechaDefuncion;
         this.urlFoto = urlFoto;
@@ -31,7 +31,7 @@ public class Miembro implements Serializable {
         this.tipo = tipo;
         this.nombre = nombre;
         this.apellido1 = apellido1;
-        Apellido2 = apellido2;
+        this.apellido2 = apellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaDefuncion = fechaDefuncion;
         this.urlFoto = urlFoto;
@@ -63,11 +63,11 @@ public class Miembro implements Serializable {
     }
 
     public String getApellido2() {
-        return Apellido2;
+        return apellido2;
     }
 
     public void setApellido2(String getApellido2) {
-        this.Apellido2 = getApellido2;
+        this.apellido2 = getApellido2;
     }
 
     public String getFechaNacimiento() {
@@ -109,7 +109,7 @@ public class Miembro implements Serializable {
                 "tipo='" + tipo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido1='" + apellido1 + '\'' +
-                ", Apellido2='" + Apellido2 + '\'' +
+                ", Apellido2='" + apellido2 + '\'' +
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", fechaDefuncion='" + fechaDefuncion + '\'' +
                 ", urlFoto='" + urlFoto + '\'' +

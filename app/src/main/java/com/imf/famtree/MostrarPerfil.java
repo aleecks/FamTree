@@ -7,17 +7,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 import com.imf.famtree.inicio.Inicio;
 
 public class MostrarPerfil extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnLogOut, btnVolver;
-
     private TextView lblNombre, lblCorreo, lblId;
+    private ImageView imgPerfil;
 
     private Intent iInicio, iHome;
 
@@ -33,10 +36,12 @@ public class MostrarPerfil extends AppCompatActivity implements View.OnClickList
         lblId = findViewById(R.id.lblUID);
         btnLogOut = findViewById(R.id.btnLogOut);
         btnVolver = findViewById(R.id.btnVolver);
+        imgPerfil = findViewById(R.id.imgPerfil);
 
         iInicio = new Intent(this, Inicio.class);
         iHome = new Intent(this, Home.class);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        Glide.with(this).load("gs://famtree-tfg.appspot.com/imagenes/fotos_perfil/image:32").override(176, 142).centerCrop().fitCenter().into(imgPerfil);
 
         lblNombre.setText(user.getDisplayName());
         lblCorreo.setText(user.getEmail());
