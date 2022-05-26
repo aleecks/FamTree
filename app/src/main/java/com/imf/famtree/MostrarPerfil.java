@@ -41,7 +41,7 @@ public class MostrarPerfil extends AppCompatActivity implements View.OnClickList
         iInicio = new Intent(this, Inicio.class);
         iHome = new Intent(this, Home.class);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        Glide.with(this).load("gs://famtree-tfg.appspot.com/imagenes/fotos_perfil/image:32").override(176, 142).centerCrop().fitCenter().into(imgPerfil);
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/famtree-tfg.appspot.com/o/imagenes%2Ffotos_perfil%2Fimage%3A32?alt=media&token=4615c9f2-9cd7-48e5-9c5b-2d3fd2e6d799").override(176, 142).centerCrop().fitCenter().into(imgPerfil);
 
         lblNombre.setText(user.getDisplayName());
         lblCorreo.setText(user.getEmail());
