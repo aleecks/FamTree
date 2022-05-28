@@ -17,14 +17,14 @@
         android:textSize="30sp" />
 
 
-    <Button
+    <ImageView
         android:id="@+id/btnImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@android:drawable/ic_menu_camera"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:srcCompat="@android:drawable/ic_menu_camera" />
 
     <EditText
         android:id="@+id/txtNombre"
@@ -89,7 +89,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="Otra Informacion"
-        android:inputType="text"/>
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btnSubir"

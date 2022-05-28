@@ -39,6 +39,15 @@
                 android:text="1ºMiembro"
                 android:textSize="20sp" />
 
+            <!-- <ImageView
+                android:id="@+id/btnImg1"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@android:drawable/ic_menu_camera"
+                tools:ignore="SpeakableTextPresentCheck" /> -->
+
             <EditText
                 android:id="@+id/txtNombre1"
                 android:layout_width="wrap_content"
@@ -124,12 +133,21 @@
                 android:text="2ºMiembro"
                 android:textSize="20sp" />
 
+            <!-- <ImageView
+                android:id="@+id/btnImg2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@android:drawable/ic_menu_camera"
+                tools:ignore="SpeakableTextPresentCheck" /> -->
+
             <EditText
                 android:id="@+id/txtNombre2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="Nombre"

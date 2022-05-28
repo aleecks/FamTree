@@ -2,15 +2,21 @@ package com.imf.famtree;
 
 
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +25,10 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.imf.famtree.beans.Miembro;
+import com.imf.famtree.utilidades.Img;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Calendar;
 
 public class EditarMiembro extends AppCompatActivity implements View.OnClickListener {
@@ -27,7 +36,8 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
     private Intent iEditar;
 
     private EditText txtNombre, txtApellido1, txtApellido2;
-    private Button btnVolver, btnSubir, btnFecha1, btnFecha2, btnImg;
+    private Button btnVolver, btnSubir, btnFecha1, btnFecha2;
+    private ImageView btnImg;
 
     private Miembro miembro, miembroActualizado;
     private ManejadorBD bd;
@@ -42,9 +52,6 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
     // subir fotografia
     private String urlFoto;
     private boolean fotoSubida;
-    private static final int File = 1;
-    private Uri fileUri;
-    private StorageReference carpetaFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +79,7 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
         bd = new ManejadorBD();
 
         // ---------- RELLENAR TXT --------
+        btnImg.setImageBitmap(Img.getImgBitmap(urlFoto));
         txtNombre.setText(miembro.getNombre());
         txtApellido1.setText(miembro.getApellido1());
         txtApellido2.setText(miembro.getApellido2());
@@ -98,7 +106,7 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.btnImg:
                 if (!fotoSubida) {
-                    fileUpload();
+                    lay_addImagen();
                 }
                 break;
 
@@ -132,25 +140,31 @@ public class EditarMiembro extends AppCompatActivity implements View.OnClickList
     }
 
     // ------- SUBIR FOTOGRAFIA --------
-    private void fileUpload() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        startActivityForResult(intent, File);
+    public void lay_addImagen(){
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.addFlags(Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
+        pickImage.launch(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    //Metodo que nos permite coger una imagen de la galería
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    Uri imageUri = result.getData().getData();
 
-        if (requestCode == File) {
-            if (resultCode == RESULT_OK) {
-                fileUri = data.getData();
-                carpetaFoto = FirebaseStorage.getInstance().getReference().child("imagenes/fotos_perfil");
-                urlFoto = "imagenes/fotos_perfil/" + fileUri.getLastPathSegment();
-                fotoSubida = true;
+                    try{
+                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        btnImg.setImageBitmap(bitmap);
+                        urlFoto = Img.getImgString(bitmap);
+                        fotoSubida = true;
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-
-        }
-    }
+    );
 
 }

@@ -29,7 +29,7 @@
     </androidx.gridlayout.widget.GridLayout>
 
 
-    <Button
+    <ImageView
         android:id="@+id/btnImg"
         android:layout_width="160dp"
         android:layout_height="160dp"

@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 public class Miembro implements Serializable {
     private String tipo;
+    private String numeroMiembro;
     private String nombre;
     private String apellido1;
     private String apellido2;
@@ -38,12 +39,21 @@ public class Miembro implements Serializable {
         this.descripcion = descripcion;
     }
 
+
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getNumeroMiembro() {
+        return numeroMiembro;
+    }
+
+    public void setNumeroMiembro(String numeroMiembro) {
+        this.numeroMiembro = numeroMiembro;
     }
 
     public String getNombre() {
@@ -66,8 +76,8 @@ public class Miembro implements Serializable {
         return apellido2;
     }
 
-    public void setApellido2(String getApellido2) {
-        this.apellido2 = getApellido2;
+    public void setApellido2(String apellido2) {
+        this.apellido2 = apellido2;
     }
 
     public String getFechaNacimiento() {

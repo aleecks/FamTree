@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
+import com.imf.famtree.utilidades.Img;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +30,7 @@ import java.util.Objects;
 public class MostrarArbol extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnVolver, btnEliminar;
-    private Button btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
+    private ImageView btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
 
     private Intent iVolver, iMostrar;
     private FirebaseUser user;
@@ -299,6 +301,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                     if (document.exists()) {
                         miembroObtenido = document.getData();
                         miembro.setTipo(numeroMiembro);
+                        miembro.setNumeroMiembro(numeroMiembro);
                         miembro.setNombre(Objects.requireNonNull(miembroObtenido.get("nombre")).toString());
                         miembro.setApellido1(Objects.requireNonNull(miembroObtenido.get("apellido_1")).toString());
                         miembro.setApellido2(Objects.requireNonNull(miembroObtenido.get("apellido_2")).toString());
@@ -309,18 +312,74 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                         switch (tipoMiembro) {
                             case "bisabuelos":
                                 arbol.getBisabuelos().add(miembro);
+                                // mostramos fotografía
+                                switch (miembro.getNumeroMiembro()) {
+                                    case "0.1":
+                                        btn01.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "0.2":
+                                        btn02.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "1.1":
+                                        btn11.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "1.2":
+                                        btn12.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "2.1":
+                                        btn21.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "2.2":
+                                        btn22.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "3.1":
+                                        btn31.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "3.2":
+                                        btn32.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                }
                                 break;
 
                             case "abuelos":
                                 arbol.getAbuelos().add(miembro);
+                                // mostramos fotografía
+                                switch (miembro.getNumeroMiembro()) {
+                                    case "4.1":
+                                        btn41.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "4.2":
+                                        btn42.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "5.1":
+                                        btn51.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        break;
+
+                                    case "5.2":
+                                        btn52.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                }
                                 break;
 
                             case "padres":
                                 arbol.getPadres().add(miembro);
+                                if (miembro.getNumeroMiembro().equals("6.1")) {
+                                    btn61.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                } else {
+                                    btn62.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                }
                                 break;
 
                             case "usuario":
                                 arbol.setTu(miembro);
+                                btnUsuario.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
                                 Log.d(TAG, "TERMINDO");
                                 Log.d(TAG, arbol.toString());
 

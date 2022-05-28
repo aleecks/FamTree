@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.imf.famtree.Home;
 import com.imf.famtree.R;
-import com.imf.famtree.Validaciones;
+import com.imf.famtree.utilidades.Validaciones;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 

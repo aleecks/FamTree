@@ -22,7 +22,7 @@
         android:layout_height="142dp"
         android:layout_gravity="center"
         android:layout_marginTop="55dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
     <TextView
         android:id="@+id/lblNombre"

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MostrarArbol"
-   >
+    tools:context=".MostrarArbol">
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
@@ -13,147 +12,147 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp">
 
-        <Button
+        <ImageView
             android:id="@+id/btn01"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn02"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn11"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn12"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn21"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="75dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn22"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn31"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck"/>
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn32"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
     </androidx.gridlayout.widget.GridLayout>
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:layout_marginLeft="-600dp">
+        android:layout_marginLeft="-600dp"
+        android:layout_marginTop="120dp">
 
-        <Button
+        <ImageView
             android:id="@+id/btn41"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn42"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn51"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="195dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn52"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
     </androidx.gridlayout.widget.GridLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/btn61"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="-485dp"
         android:layout_marginTop="220dp"
-        android:background="@drawable/fui_ic_anonymous_white_24dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn62"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="285dp"
         android:layout_marginTop="220dp"
-        android:background="@drawable/fui_ic_anonymous_white_24dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnUsuario"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginLeft="-270dp"
         android:layout_marginTop="240dp"
-        android:background="@drawable/fui_ic_anonymous_white_24dp"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
 
     <Button
         android:id="@+id/btnEliminar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="-400dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="300dp"
         android:text="Eliminar" />
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:layout_marginLeft="490dp"
+        android:layout_marginTop="300dp"
         android:text="Volver" />
 
 </LinearLayout>
