@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,51 +7,53 @@
     android:orientation="vertical"
     tools:context=".Home">
 
-    <Button
-        android:id="@+id/btnArbol1"
-        android:layout_width="261dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:text="Nuevo Árbol" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4" />
 
-
-    <Button
-        android:id="@+id/btnArbol2"
-        android:layout_width="261dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="Nuevo Árbol" />
-
-    <Button
-        android:id="@+id/btnArbol3"
-        android:layout_width="261dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:text="Nuevo Árbol" />
-
-
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="300dp">
-
-        <Button
-            android:id="@+id/btnVolver"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="Home" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6F000000"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnPerfil"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="Perfil" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/fui_ic_anonymous_white_24dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    </androidx.gridlayout.widget.GridLayout>
+        <Button
+            android:id="@+id/btnArbol1"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/style_btn_home"
+            android:text="Nuevo Árbol" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnArbol2"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/style_btn_home"
+            android:text="Nuevo Árbol" />
+
+        <Button
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/style_btn_home"
+            android:text="Nuevo Árbol" />
+
+    </LinearLayout>
+</RelativeLayout>

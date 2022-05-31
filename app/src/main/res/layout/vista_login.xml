@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,53 +7,65 @@
     android:orientation="vertical"
     tools:context=".inicio.Login">
 
-    <Button
-        android:id="@+id/btnVolver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="30dp"
-        android:text="Volver" />
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="280dp"
-        android:layout_height="218dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background3" />
 
-    <EditText
-        android:id="@+id/editTxtEmail"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:autofillHints="" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AE000000"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTxtContraseña"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:autofillHints="" />
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/volver"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:text="Iniciar Sesión" />
+        <EditText
+            android:id="@+id/editTxtEmail"
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="210dp"
+            android:autofillHints=""
+            android:background="@drawable/style_input"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:paddingLeft="20dp" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/editTxtContraseña"
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:autofillHints=""
+            android:background="@drawable/style_input"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:paddingStart="20dp" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="246dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/style_btn_registro"
+            android:text="Iniciar Sesión" />
+    </LinearLayout>
+
+
+</RelativeLayout>

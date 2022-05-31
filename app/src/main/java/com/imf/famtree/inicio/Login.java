@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 });
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "El email es incorrecto", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "El email esta vacío o es incorrecto", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {
