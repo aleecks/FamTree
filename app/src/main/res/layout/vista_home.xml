@@ -19,15 +19,14 @@
         android:background="#6F000000"
         android:orientation="vertical">
 
-        <Button
+        <ImageView
             android:id="@+id/btnPerfil"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginStart="115dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/fui_ic_anonymous_white_24dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:background="@drawable/style_foto_perfil"/>
 
         <Button
             android:id="@+id/btnArbol1"
@@ -35,8 +34,9 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            android:background="@drawable/style_btn_home"
-            android:text="Nuevo Árbol" />
+            android:background="@drawable/style_btn_home_1"
+            android:text="Nuevo Árbol"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btnArbol2"
@@ -44,16 +44,18 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:background="@drawable/style_btn_home"
-            android:text="Nuevo Árbol" />
+            android:background="@drawable/style_btn_home_1"
+            android:text="Nuevo Árbol"
+            android:textColor="@color/black" />
 
         <Button
+            android:id="@+id/btnArbol3"
             android:layout_width="246dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:background="@drawable/style_btn_home"
-            android:text="Nuevo Árbol" />
-
+            android:background="@drawable/style_btn_home_1"
+            android:text="Nuevo Árbol"
+            android:textColor="@color/black" />
     </LinearLayout>
 </RelativeLayout>

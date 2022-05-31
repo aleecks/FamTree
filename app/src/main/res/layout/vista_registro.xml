@@ -30,12 +30,11 @@
 
         <ImageView
             android:id="@+id/btnImg"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
+            android:layout_width="114dp"
+            android:layout_height="113dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:srcCompat="@drawable/camera" />
+            android:src="@drawable/camera" />
 
         <EditText
             android:id="@+id/editTxtNombre"
@@ -97,7 +96,6 @@
             android:layout_marginTop="80dp"
             android:background="@drawable/style_btn_registro"
             android:text="Registrarse" />
-
     </LinearLayout>
 
 </RelativeLayout>

@@ -26,7 +26,7 @@ import com.imf.famtree.utilidades.Img;
 public class MostrarPerfil extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnLogOut, btnVolver;
-    private TextView lblNombre, lblCorreo, lblId;
+    private TextView lblNombre, lblCorreo;
     private ImageView imgPerfil;
 
     private Intent iInicio, iHome;
@@ -41,7 +41,6 @@ public class MostrarPerfil extends AppCompatActivity implements View.OnClickList
 
         lblNombre = findViewById(R.id.lblNombre);
         lblCorreo = findViewById(R.id.lblCorreo);
-        lblId = findViewById(R.id.lblUID);
         btnLogOut = findViewById(R.id.btnLogOut);
         btnVolver = findViewById(R.id.btnVolver);
         imgPerfil = findViewById(R.id.imgPerfil);
@@ -53,7 +52,6 @@ public class MostrarPerfil extends AppCompatActivity implements View.OnClickList
 
         lblNombre.setText(user.getDisplayName());
         lblCorreo.setText(user.getEmail());
-        lblId.setText(user.getUid());
         mostrarFoto(user.getEmail());
 
         // -------------- LISTENERS --------

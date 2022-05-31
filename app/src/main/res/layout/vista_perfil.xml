@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,71 +7,69 @@
     android:orientation="vertical"
     tools:context=".MostrarPerfil">
 
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40dp"
-        android:text="Cerrar Sesión" />
-
     <ImageView
-        android:id="@+id/imgPerfil"
-        android:layout_width="176dp"
-        android:layout_height="142dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="55dp"
-        tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background4" />
 
-    <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="294dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:gravity="center"
-        android:text="Nombre"
-        android:textSize="25dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6F000000"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lblCorreo"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="Correo"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/lblUID"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="Id"
-        android:textSize="20dp" />
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp">
-
-        <Button
-            android:id="@+id/btnVolver"
-            android:layout_width="170dp"
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home" />
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp">
 
-        <Button
-            android:id="@+id/btnEditar"
-            android:layout_width="170dp"
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/volver_verde"
+                android:layout_marginLeft="10dp"
+                app:layout_column="0"
+                app:layout_row="0" />
+
+            <Button
+                android:id="@+id/btnLogOut"
+                android:layout_width="143dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="139dp"
+                android:background="@drawable/style_btn_home_1"
+                android:text="Cerrar Sesión"
+                android:textColor="@color/black" />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <ImageView
+            android:id="@+id/imgPerfil"
+            android:layout_width="176dp"
+            android:layout_height="142dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            tools:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="294dp"
             android:layout_height="wrap_content"
-            android:text="Perfil" />
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="Nombre"
+            android:textSize="25dp" />
 
-    </androidx.gridlayout.widget.GridLayout>
-
-</LinearLayout>
+        <TextView
+            android:id="@+id/lblCorreo"
+            android:layout_width="307dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="42dp"
+            android:gravity="center"
+            android:text="Correo"
+            android:textSize="20dp" />
+    </LinearLayout>
+</RelativeLayout>

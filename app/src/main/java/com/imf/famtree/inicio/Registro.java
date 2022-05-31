@@ -167,6 +167,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                         InputStream inputStream = getContentResolver().openInputStream(imageUri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         btnImg.setImageBitmap(bitmap);
+                        btnImg.setBackgroundResource(R.drawable.style_circulo_imagen);
+                        btnImg.setCropToPadding(false);
                         urlFoto = Img.getImgString(bitmap);
                         fotoSubida = true;
 
