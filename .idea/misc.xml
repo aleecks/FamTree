@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2245" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_btn_editar.xml" value="0.3655" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_btn_eliminar.xml" value="0.3675" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_btn_home.xml" value="0.366" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_btn_home_1.xml" value="0.366" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_btn_inicio.xml" value="0.336" />
@@ -11,19 +13,21 @@
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_circulo_imagen.xml" value="0.366" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_foto_perfil.xml" value="0.366" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_input.xml" value="0.366" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout-land/vista_arbol.xml" value="0.50625" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_input_miembro.xml" value="0.3655" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/drawable/style_scroll_view.xml" value="0.3675" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout-land/vista_arbol.xml" value="0.2586805555555556" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/activity_subir_arbol.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_arbol.xml" value="0.3458333333333333" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_crear_miembro.xml" value="0.33" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_editar_miembro.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_crear_miembro.xml" value="0.24444444444444444" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_editar_miembro.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_home.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_inicio.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_login.xml" value="0.24192439862542955" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_mostrar_miembro.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_perfil.xml" value="0.24444444444444444" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_mostrar_miembro.xml" value="0.24444444444444444" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_perfil.xml" value="0.25" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_registro.xml" value="0.24444444444444444" />
-        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_subir_arbol.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/layout/vista_subir_arbol.xml" value="0.24444444444444444" />
         <entry key="..\:/Users/aleex/AndroidStudioProjects/FamTree/app/src/main/res/menu/overflow.xml" value="0.36666666666666664" />
       </map>
     </option>

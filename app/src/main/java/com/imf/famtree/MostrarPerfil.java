@@ -22,12 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.imf.famtree.inicio.Inicio;
 import com.imf.famtree.utilidades.Img;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class MostrarPerfil extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnLogOut, btnVolver;
     private TextView lblNombre, lblCorreo;
-    private ImageView imgPerfil;
+    private RoundedImageView imgPerfil;
 
     private Intent iInicio, iHome;
 

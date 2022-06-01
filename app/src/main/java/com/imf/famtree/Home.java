@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.utilidades.Img;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     private boolean isArbol1, isArbol2, isArbol3;
 
     private Button btnCrearArbol1, btnCrearArbol2, btnCrearArbol3;
-    private ImageView btnVolver;
+    private RoundedImageView btnVolver;
 
     private Intent iPerfil, iArbol, iMostrarArbol;
     private FirebaseUser user;

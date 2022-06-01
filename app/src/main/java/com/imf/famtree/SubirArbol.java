@@ -42,7 +42,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
     private int dia, mes, ano;
     private String fecha;
 
-    private EditText txtNombre, txtApellido1, txtApellido2, txtDescripcion;
+    private EditText txtNombre, txtApellido1, txtApellido2;
     private Button btnSubir, btnFecha;
     private ImageView btnImg;
 
@@ -58,7 +58,6 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
         txtNombre = findViewById(R.id.txtNombre);
         txtApellido1 = findViewById(R.id.txtApellido1);
         txtApellido2 = findViewById(R.id.txtApellido2);
-        txtDescripcion = findViewById(R.id.txtInfo);
         btnImg = findViewById(R.id.btnImg);
         btnSubir = findViewById(R.id.btnSubir);
         btnFecha = findViewById(R.id.btnFecha);
@@ -101,7 +100,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btnSubir:
                 // comprobar si text fields estan vacios
-                if (txtNombre.getText().toString().isEmpty() || txtApellido1.getText().toString().isEmpty() || txtApellido2.getText().toString().isEmpty() || txtDescripcion.getText().toString().isEmpty()) {
+                if (txtNombre.getText().toString().isEmpty() || txtApellido1.getText().toString().isEmpty() || txtApellido2.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
 
                     // comprobar si las fechas estan vacias
@@ -109,7 +108,7 @@ public class SubirArbol extends AppCompatActivity implements View.OnClickListene
                     Toast.makeText(getApplicationContext(), "Debes rellenar la fechas de nacimineto", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    miembro = new Miembro("usuario", txtNombre.getText().toString(), txtApellido1.getText().toString(), txtApellido2.getText().toString(), fecha, "vivo", urlFoto, txtDescripcion.getText().toString());
+                    miembro = new Miembro("usuario", txtNombre.getText().toString(), txtApellido1.getText().toString(), txtApellido2.getText().toString(), fecha, "vivo", urlFoto);
                     arbol.setTu(miembro);
 
                     // subimos arbol

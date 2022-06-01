@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,95 +7,210 @@
     android:orientation="vertical"
     tools:context=".MostrarMiembro">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-
-        <Button
-            android:id="@+id/btnVolver"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Volver" />
-
-        <Button
-            android:id="@+id/btnEditar"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:text="Editar" />
-
-    </androidx.gridlayout.widget.GridLayout>
-
-
     <ImageView
-        android:id="@+id/btnImg"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@android:drawable/ic_menu_camera"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background6" />
 
-    <TextView
-        android:id="@+id/lblNombre"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#70000000"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lblApellido1"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Primer Apellido"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/lblApellido2"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Segundo Apellido"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp">
 
-    <TextView
-        android:id="@+id/lblFechaNacimiento"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Fecha Nacimiento"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
+            <ImageView
+                android:id="@+id/btnImg"
+                android:layout_width="179dp"
+                android:layout_height="160dp"
+                android:src="@android:drawable/ic_menu_camera"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:paddingLeft="10dp"/>
 
-    <TextView
-        android:id="@+id/lblFechaDefuncion"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Fecha Defuncion"
-        android:inputType="textPersonName"
-        android:textSize="25sp" />
+            <TextView
+                android:id="@+id/lblNombre"
+                android:layout_width="168dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="Alejandro"
+                android:textSize="32sp"
+                app:layout_gravity="center"
+                android:textColor="@color/white"
+                />
+        </androidx.gridlayout.widget.GridLayout>
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="334dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@color/white"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="375dp"
+            android:layout_height="101dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/lblApellido"
+                android:layout_width="158dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Primer Apellido"
+                android:textSize="25sp"
+                app:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/lblApellido1"
+                android:layout_width="204dp"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="Primer Apellido"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                app:layout_gravity="center" />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="375dp"
+            android:layout_height="101dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/lblApellidos"
+                android:layout_width="167dp"
+                android:layout_height="101dp"
+                android:gravity="center"
+                android:text="Segundo Apellido"
+                android:textSize="25sp"
+                app:layout_gravity="center"
+                android:paddingLeft="10dp"
+
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/lblApellido2"
+                android:layout_width="210dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Segundo Apellido"
+                android:inputType="textPersonName"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="375dp"
+            android:layout_height="101dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="167dp"
+                android:layout_height="101dp"
+                android:gravity="center"
+                android:text="Fecha de Nacimiento"
+                android:paddingLeft="10dp"
+
+                android:textSize="25sp"
+                app:layout_gravity="center"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/lblFechaNacimiento"
+                android:layout_width="211dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:gravity="center"
+                android:text="30/12/2222"
+                android:inputType="textPersonName"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="375dp"
+            android:layout_height="101dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/fecha1"
+                android:layout_width="167dp"
+                android:layout_height="101dp"
+                android:gravity="center"
+                android:text="Fecha de Defunción"
+                android:textSize="25sp"
+                app:layout_gravity="center"
+                android:paddingLeft="10dp"
+
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/lblFechaDefuncion"
+                android:layout_width="211dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:gravity="center"
+                android:text="30/12/2222"
+                android:inputType="textPersonName"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                />
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="104dp"
+                android:layout_height="72dp"
+                android:background="?attr/actionModeCloseDrawable"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btnEditar"
+                android:layout_width="143dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="100dp"
+                android:background="@drawable/style_btn_editar"
+                android:text="Editar"
+                android:textColor="@color/black" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

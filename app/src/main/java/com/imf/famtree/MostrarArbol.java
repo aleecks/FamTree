@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.imf.famtree.beans.Arbol;
 import com.imf.famtree.beans.Miembro;
 import com.imf.famtree.utilidades.Img;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +30,7 @@ import java.util.Objects;
 public class MostrarArbol extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnVolver, btnEliminar;
-    private ImageView btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
+    private RoundedImageView btn01, btn02, btn11, btn12, btn21, btn22, btn31, btn32, btn41, btn42, btn51, btn52, btn61, btn62, btnUsuario;
 
     private Intent iVolver, iMostrar;
     private FirebaseUser user;
@@ -44,7 +44,7 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_arbol);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
 
         btnVolver = findViewById(R.id.btnVolver);
         btnEliminar = findViewById(R.id.btnEliminar);

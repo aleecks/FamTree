@@ -16,17 +16,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6F000000"
+        android:background="#14000000"
         android:orientation="vertical">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/btnPerfil"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginStart="115dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/style_foto_perfil"/>
+            android:background="@drawable/style_foto_perfil"
+            android:scaleType="centerCrop"
+            app:riv_oval="true" />
 
         <Button
             android:id="@+id/btnArbol1"

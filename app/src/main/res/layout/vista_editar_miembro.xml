@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,105 +7,139 @@
     android:orientation="vertical"
     tools:context=".EditarMiembro">
 
-    <Button
-        android:id="@+id/btnVolver"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="35dp"
-        android:text="Volver" />
-
     <ImageView
-        android:id="@+id/btnImg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@android:drawable/ic_menu_camera"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background6" />
 
-    <EditText
-        android:id="@+id/txtNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#70000000"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtApellido1"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint=" Primer Apellido"
-        android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/txtApellido2"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Segundo Apellido"
-        android:inputType="textPersonName" />
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Elegir fecha de nacimiento"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnNacimiento"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_menu_my_calendar"
+        <ImageView
+            android:id="@+id/btnImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/camera"
             tools:ignore="SpeakableTextPresentCheck" />
 
-    </androidx.gridlayout.widget.GridLayout>
+        <EditText
+            android:id="@+id/txtNombre"
+            android:layout_width="305dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/style_btn_editar"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp">
+        <EditText
+            android:id="@+id/txtApellido1"
+            android:layout_width="305dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/style_btn_editar"
+            android:ems="10"
+            android:hint="Primer Apellido"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
 
-        <TextView
+        <EditText
+            android:id="@+id/txtApellido2"
+            android:layout_width="305dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/style_btn_editar"
+            android:ems="10"
+            android:hint="Segundo Apellido"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
+
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Elegir fecha de defunción"
-            android:textSize="18sp" />
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp">
 
-        <Button
-            android:id="@+id/btnDefuncion"
-            android:layout_width="50dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elegir fecha de nacimiento"
+                android:textColor="@color/white"
+                android:textSize="23sp" />
+
+            <Button
+                android:id="@+id/btnNacimiento"
+                android:layout_width="65dp"
+                android:layout_height="60dp"
+                android:background="@android:drawable/ic_menu_my_calendar"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:background="@android:drawable/ic_menu_my_calendar"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp">
 
-    </androidx.gridlayout.widget.GridLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elegir fecha de nacimiento"
+                android:textColor="@color/white"
+                android:textSize="23sp" />
 
-    <Button
-        android:id="@+id/btnSubir"
-        android:layout_width="135dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:text="Guardar Miembro" />
+            <Button
+                android:id="@+id/btnDefuncion"
+                android:layout_width="65dp"
+                android:layout_height="60dp"
+                android:background="@android:drawable/ic_menu_my_calendar"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-</LinearLayout>
+        </androidx.gridlayout.widget.GridLayout>
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="55dp">
+
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="104dp"
+                android:layout_height="72dp"
+                android:background="?attr/actionModeCloseDrawable"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btnSubir"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/style_btn_home"
+                android:text="Guardar Miembro" />
+        </androidx.gridlayout.widget.GridLayout>
+
+    </LinearLayout>
+</RelativeLayout>
