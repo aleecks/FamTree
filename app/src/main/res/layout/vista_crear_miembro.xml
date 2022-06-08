@@ -26,10 +26,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@color/black"
+            android:fontFamily="@font/pretty_trees"
             android:gravity="center"
-            android:text="1º/4 Pareja de Bisabuelos"
+            android:text="1/4 Pareja de Bisabuelos"
             android:textColor="#B9FFFFFF"
-            android:textSize="25sp" />
+            android:textSize="31sp" />
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -52,9 +53,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="30dp"
-                    android:text="1ºMiembro"
+                    android:fontFamily="@font/tree_ftr"
+                    android:text="1º Miembro"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="35sp" />
 
                 <!-- <ImageView
                     android:id="@+id/btnImg1"
@@ -107,6 +109,7 @@
                     android:hint="Segundo Apellido"
                     android:inputType="textPersonName"
                     android:paddingLeft="20dp"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
                 <androidx.gridlayout.widget.GridLayout
@@ -118,9 +121,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tree_ftr"
                         android:text="Elegir fecha de nacimiento"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btnNacimiento1"
@@ -139,10 +143,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tree_ftr"
                         android:text="Elegir fecha de defunción"
                         android:textColor="@color/white"
-
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btnDefuncion1"
@@ -160,9 +164,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="65dp"
-                    android:text="2ºMiembro"
+                    android:fontFamily="@font/tree_ftr"
+                    android:text="2º Miembro"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="35sp" />
 
                 <!-- <ImageView
                     android:id="@+id/btnImg2"
@@ -191,7 +196,7 @@
                 <EditText
                     android:id="@+id/txtApellido2.1"
                     android:layout_width="272dp"
-                    android:layout_height="47dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:autofillHints=""
@@ -206,7 +211,7 @@
                 <EditText
                     android:id="@+id/txtApellido2.2"
                     android:layout_width="272dp"
-                    android:layout_height="47dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:autofillHints=""
@@ -227,9 +232,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tree_ftr"
                         android:text="Elegir fecha de nacimiento"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btnNacimiento2"
@@ -250,9 +256,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tree_ftr"
                         android:text="Elegir fecha de defunción"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btnDefuncion2"
@@ -273,6 +280,8 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="@drawable/style_scroll_view"
-            android:text="Siguiente" />
+            android:fontFamily="@font/tree_ftr"
+            android:text="Siguiente"
+            android:textSize="25sp" />
     </LinearLayout>
 </RelativeLayout>

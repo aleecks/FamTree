@@ -20,9 +20,10 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="40dp"
         android:background="@color/black"
+        android:fontFamily="@font/pretty_trees"
         android:gravity="center"
         android:text="Tu información"
-        android:textSize="30sp" />
+        android:textSize="40sp" />
 
     <LinearLayout
         android:layout_width="355dp"
@@ -53,6 +54,7 @@
             android:hint="Nombre"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <EditText
@@ -67,6 +69,7 @@
             android:hint="Primer Apellido"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <EditText
@@ -81,6 +84,7 @@
             android:hint="Segundo Apellido"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <androidx.gridlayout.widget.GridLayout
@@ -92,8 +96,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/tree_ftr"
                 android:text="Elegir fecha de nacimiento"
-                android:textSize="18sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/btnFecha"
@@ -110,8 +115,10 @@
         android:layout_width="246dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:background="@drawable/style_scroll_view"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="740dp"
+        android:fontFamily="@font/tree_ftr"
+        android:textSize="25sp"
+        android:background="@drawable/style_scroll_view"
         android:text="Crear Arbol" />
 </RelativeLayout>

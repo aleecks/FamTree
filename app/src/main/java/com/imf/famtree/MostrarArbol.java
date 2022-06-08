@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -316,34 +317,42 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                                 switch (miembro.getNumeroMiembro()) {
                                     case "0.1":
                                         btn01.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn01);
                                         break;
 
                                     case "0.2":
                                         btn02.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn02);
                                         break;
 
                                     case "1.1":
                                         btn11.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn11);
                                         break;
 
                                     case "1.2":
                                         btn12.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn12);
                                         break;
 
                                     case "2.1":
                                         btn21.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn21);
                                         break;
 
                                     case "2.2":
                                         btn22.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn22);
                                         break;
 
                                     case "3.1":
                                         btn31.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn31);
                                         break;
 
                                     case "3.2":
                                         btn32.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn32);
                                 }
                                 break;
 
@@ -353,18 +362,22 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                                 switch (miembro.getNumeroMiembro()) {
                                     case "4.1":
                                         btn41.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn41);
                                         break;
 
                                     case "4.2":
                                         btn42.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn42);
                                         break;
 
                                     case "5.1":
                                         btn51.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn51);
                                         break;
 
                                     case "5.2":
                                         btn52.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                        estilizarBoton(btn52);
                                 }
                                 break;
 
@@ -372,14 +385,17 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
                                 arbol.getPadres().add(miembro);
                                 if (miembro.getNumeroMiembro().equals("6.1")) {
                                     btn61.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                    estilizarBoton(btn61);
                                 } else {
                                     btn62.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                    estilizarBoton(btn62);
                                 }
                                 break;
 
                             case "usuario":
                                 arbol.setTu(miembro);
                                 btnUsuario.setImageBitmap(Img.getImgBitmap(miembro.getUrlFoto()));
+                                estilizarBoton(btnUsuario);
                                 Log.d(TAG, "TERMINDO");
                                 Log.d(TAG, arbol.toString());
 
@@ -400,6 +416,11 @@ public class MostrarArbol extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void estilizarBoton(RoundedImageView btn) {
+        btn.setBorderColor(Color.rgb(73, 51, 13));
+        btn.setBorderWidth(4F);
     }
 
 }

@@ -112,10 +112,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-
     // ----------------------------- COMPROVACIONES Y UTILIDADES -------------------------
     private void comprobarArboles() {
-        db.collection("users").document(userEmail).collection("tree").document("arbol1").collection("bisabuelos").document("0.1").get().addOnCompleteListener(task -> {
+        db.collection("users").document(userEmail).collection("tree").document("arbol1")
+                .get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
@@ -124,9 +124,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol1.setBackgroundResource(R.drawable.style_btn_home);
                     btnCrearArbol1.setTextColor(Color.rgb(255, 255, 255));
+                    btnCrearArbol1.setTextSize(24F);
                     setNombreArbol(userEmail, "arbol1");
 
                 } else {
+                    btnCrearArbol1.setBackgroundResource(R.drawable.style_btn_home_1);
+                    btnCrearArbol1.setTextColor(Color.rgb(0, 0, 0));
+                    btnCrearArbol1.setTextSize(24F);
                     Log.d(TAG, "arbol1 no existe");
                     isArbol1 = false;
                 }
@@ -144,9 +148,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol2.setBackgroundResource(R.drawable.style_btn_home);
                     btnCrearArbol2.setTextColor(Color.rgb(255, 255, 255));
+                    btnCrearArbol2.setTextSize(24F);
                     setNombreArbol(userEmail, "arbol2");
 
                 } else {
+                    btnCrearArbol2.setBackgroundResource(R.drawable.style_btn_home_1);
+                    btnCrearArbol2.setTextColor(Color.rgb(0, 0, 0));
+                    btnCrearArbol2.setTextSize(24F);
                     Log.d(TAG, "arbol2 no existe");
                     isArbol2 = false;
                 }
@@ -164,9 +172,13 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     // ---- CAMBIAR NOMBRE BOTONES ---
                     btnCrearArbol3.setBackgroundResource(R.drawable.style_btn_home);
                     btnCrearArbol3.setTextColor(Color.rgb(255, 255, 255));
+                    btnCrearArbol3.setTextSize(24F);
                     setNombreArbol(userEmail, "arbol3");
 
                 } else {
+                    btnCrearArbol3.setBackgroundResource(R.drawable.style_btn_home_1);
+                    btnCrearArbol3.setTextColor(Color.rgb(0, 0, 0));
+                    btnCrearArbol3.setTextSize(24F);
                     Log.d(TAG, "arbol3 no existe");
                     isArbol3 = false;
                 }
@@ -207,7 +219,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void setNombreArbol(String userEmail, String tipoArbol){
+    private void setNombreArbol(String userEmail, String tipoArbol) {
         DocumentReference docRef = db.collection("users").document(userEmail).collection("tree").document(tipoArbol);
 
         try {
@@ -254,7 +266,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                     if (document.exists()) {
                         String photo = document.getString("url_foto");
                         btnVolver.setImageBitmap(Img.getImgBitmap(photo));
-
+                        btnVolver.setBorderColor(Color.rgb(147, 178, 112));
+                        btnVolver.setBorderWidth(5.5F);
                     } else {
                         Log.e(TAG, "No such document");
                     }

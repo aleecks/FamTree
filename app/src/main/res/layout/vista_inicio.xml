@@ -13,11 +13,11 @@
         android:src="@drawable/background1" />
 
     <LinearLayout
+        android:id="@+id/vistaInicio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9A000000"
+        android:background="#75000000"
         android:gravity="center"
-        android:id="@+id/vistaInicio"
         android:orientation="vertical">
 
         <TextView
@@ -25,27 +25,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-30dp"
+            android:fontFamily="@font/green_nature"
             android:text="Bienvenido"
             android:textColor="#E37097"
-            android:textSize="50sp" />
+            android:textSize="75sp" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/green_nature"
             android:text="a"
             android:textColor="#E37097"
-            android:textSize="50sp" />
+            android:textSize="55sp" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/green_nature"
             android:text="FamTree"
             android:textColor="#E37097"
-            android:textSize="50sp" />
+            android:textSize="75sp" />
 
         <Button
             android:id="@+id/btnLogin"

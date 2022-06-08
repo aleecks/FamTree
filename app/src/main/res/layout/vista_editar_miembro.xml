@@ -85,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:text="Elegir fecha de nacimiento"
                 android:textColor="@color/white"
-                android:textSize="23sp" />
+                android:fontFamily="@font/tree_ftr"
+                android:textSize="29sp" />
 
             <Button
                 android:id="@+id/btnNacimiento"
@@ -107,8 +108,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Elegir fecha de nacimiento"
+                android:fontFamily="@font/tree_ftr"
                 android:textColor="@color/white"
-                android:textSize="23sp" />
+                android:textSize="29sp" />
 
             <Button
                 android:id="@+id/btnDefuncion"
@@ -138,7 +140,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:background="@drawable/style_btn_home"
-                android:text="Guardar Miembro" />
+                android:fontFamily="@font/tree_ftr"
+                android:text="Guardar Miembro"
+                android:textSize="20sp"/>
         </androidx.gridlayout.widget.GridLayout>
 
     </LinearLayout>

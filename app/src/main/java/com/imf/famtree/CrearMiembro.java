@@ -78,7 +78,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
         scrollView = findViewById(R.id.scrollView);
 
         // --------- MOSTRAMOS TITULO --------
-        lblTitulo.setText("1º/4 Pareja de Bisabuelos");
+        lblTitulo.setText("1/4 Pareja de Bisabuelos");
 
         //------- INICIAMOS VARIABLES --------
         bisabuelos = new ArrayList<>();
@@ -124,7 +124,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-
+        Toast.makeText(this, "contador: " + contador, Toast.LENGTH_LONG);
         // ----- SUBIR SCROLLVIEW -------
         scrollView.fullScroll(View.FOCUS_UP);
 
@@ -188,9 +188,9 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         bisabuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador + 2) + "º/4 Pareja de Bisabuelos");
+                        lblTitulo.setText((contador + 2) + "/4 Pareja de Bisabuelos");
                         if (contador == 3) {
-                            lblTitulo.setText((contador - 2) + "º/2 Pareja de Abuelos");
+                            lblTitulo.setText((contador - 2) + "/2 Pareja de Abuelos");
                         }
 
                         // reiniciar vista
@@ -207,7 +207,7 @@ public class CrearMiembro extends AppCompatActivity implements View.OnClickListe
                         abuelos.add(miembro2);
 
                         // cambiar titulo
-                        lblTitulo.setText((contador - 2) + "º/2 Pareja de Abuelos");
+                        lblTitulo.setText((contador - 2) + "/2 Pareja de Abuelos");
                         if (contador == 5) {
                             lblTitulo.setText("Padres");
                         }

@@ -26,7 +26,6 @@
             android:layout_gravity="center"
             android:layout_marginStart="115dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/style_foto_perfil"
             android:scaleType="centerCrop"
             app:riv_oval="true" />
 
@@ -37,8 +36,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:background="@drawable/style_btn_home_1"
+            android:fontFamily="@font/tree_ftr"
             android:text="Nuevo Árbol"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnArbol2"
@@ -47,8 +48,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/style_btn_home_1"
+            android:fontFamily="@font/tree_ftr"
             android:text="Nuevo Árbol"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnArbol3"
@@ -57,7 +60,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/style_btn_home_1"
+            android:fontFamily="@font/tree_ftr"
             android:text="Nuevo Árbol"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="24sp" />
     </LinearLayout>
 </RelativeLayout>

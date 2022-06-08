@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -84,6 +85,8 @@ public class MostrarPerfil extends AppCompatActivity implements View.OnClickList
                     if (document.exists()) {
                         String photo = document.getString("url_foto");
                         imgPerfil.setImageBitmap(Img.getImgBitmap(photo));
+                        imgPerfil.setBorderColor(Color.rgb(147, 178, 112));
+                        imgPerfil.setBorderWidth(5.5F);
 
                     } else {
                         Log.e(TAG, "No such document");
